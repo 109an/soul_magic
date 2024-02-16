@@ -1,4 +1,4 @@
-package ancient_arcana.arcana;
+package soul_magic.soul_magic;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
@@ -8,9 +8,9 @@ import net.minecraft.util.Identifier;
 public class soul_magicClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
-		EntityRendererRegistry.register(Ancient_arcana.SPELL_PROJECTILE, FlyingItemEntityRenderer::new);
-		EntityRendererRegistry.register(Ancient_arcana.SOUL_BOTTLE_PROJECTILE, FlyingItemEntityRenderer::new);
-		ModelPredicateProviderRegistry.register(Ancient_arcana.SOUL_BOTTLE, new Identifier("fill"), (stack, world, entity, seed) -> {
+		EntityRendererRegistry.register(soul_magic.SPELL_PROJECTILE, FlyingItemEntityRenderer::new);
+		EntityRendererRegistry.register(soul_magic.SOUL_BOTTLE_PROJECTILE, FlyingItemEntityRenderer::new);
+		ModelPredicateProviderRegistry.register(soul_magic.SOUL_BOTTLE, new Identifier("fill"), (stack, world, entity, seed) -> {
 			if(stack.hasNbt()){
 				double fill=stack.getNbt().getDouble("fill");
 				if(fill<25){

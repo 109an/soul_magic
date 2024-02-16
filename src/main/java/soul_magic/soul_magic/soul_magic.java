@@ -1,4 +1,4 @@
-package ancient_arcana.arcana;
+package soul_magic.soul_magic;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -13,12 +13,12 @@ import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ancient_arcana.arcana.Effects.MultiJumpEffect;
-import ancient_arcana.arcana.Effects.RageEffect;
-import ancient_arcana.arcana.Effects.SoulTrapEffect;
-import ancient_arcana.arcana.Effects.VampirismEffect;
+import soul_magic.soul_magic.Effects.MultiJumpEffect;
+import soul_magic.soul_magic.Effects.RageEffect;
+import soul_magic.soul_magic.Effects.SoulTrapEffect;
+import soul_magic.soul_magic.Effects.VampirismEffect;
 import net.minecraft.registry.Registry;
-public class Ancient_arcana implements ModInitializer
+public class soul_magic implements ModInitializer
  {
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.
@@ -29,20 +29,20 @@ public class Ancient_arcana implements ModInitializer
 	public static final StatusEffect SOULTRAP = new SoulTrapEffect();
 	public static final StatusEffect RAGE = new RageEffect();
 	public static final StatusEffect MULTIJUMP = new MultiJumpEffect();
-	public static final EntityType<SoulBottleProjectile> SOUL_BOTTLE_PROJECTILE = Registry.register (Registries.ENTITY_TYPE, new Identifier("ancient_arcana", "soul_bottle"), FabricEntityTypeBuilder.<SoulBottleProjectile>create(SpawnGroup.MISC, SoulBottleProjectile::new).dimensions(EntityDimensions.fixed(0.25F, 0.25F)).trackRangeBlocks(4).trackedUpdateRate(10).build());
-	public static final EntityType<SpellProjectile> SPELL_PROJECTILE = Registry.register (Registries.ENTITY_TYPE, new Identifier("ancient_arcana", "spellprojectile"), FabricEntityTypeBuilder.<SpellProjectile>create(SpawnGroup.MISC, SpellProjectile::new).dimensions(EntityDimensions.fixed(0.25F, 0.25F)).trackRangeBlocks(4).trackedUpdateRate(10).build());
-	public static final Logger LOGGER = LoggerFactory.getLogger("ancient_arcana");
+	public static final EntityType<SoulBottleProjectile> SOUL_BOTTLE_PROJECTILE = Registry.register (Registries.ENTITY_TYPE, new Identifier("soul_magic", "soul_bottle"), FabricEntityTypeBuilder.<SoulBottleProjectile>create(SpawnGroup.MISC, SoulBottleProjectile::new).dimensions(EntityDimensions.fixed(0.25F, 0.25F)).trackRangeBlocks(4).trackedUpdateRate(10).build());
+	public static final EntityType<SpellProjectile> SPELL_PROJECTILE = Registry.register (Registries.ENTITY_TYPE, new Identifier("soul_magic", "spellprojectile"), FabricEntityTypeBuilder.<SpellProjectile>create(SpawnGroup.MISC, SpellProjectile::new).dimensions(EntityDimensions.fixed(0.25F, 0.25F)).trackRangeBlocks(4).trackedUpdateRate(10).build());
+	public static final Logger LOGGER = LoggerFactory.getLogger("soul_magic");
 
 	@Override
 	public void onInitialize()
 	{
-		Registry.register(Registries.STATUS_EFFECT, new Identifier("ancient_arcana", "rage"), RAGE);
-		Registry.register(Registries.STATUS_EFFECT, new Identifier("ancient_arcana", "soul_trap"), SOULTRAP);
-		Registry.register(Registries.STATUS_EFFECT, new Identifier("ancient_arcana", "vampirism"), VAMPIRISM);
-		Registry.register(Registries.STATUS_EFFECT, new Identifier("ancient_arcana", "multi_jump"), MULTIJUMP);
-		Registry.register(Registries.ITEM, new Identifier("ancient_arcana", "wand"), WAND);
-		Registry.register(Registries.ITEM, new Identifier("ancient_arcana", "soul_bottle"), SOUL_BOTTLE);
-		//Registry.register(Registries.ITEM, new Identifier("ancient_arcana", "soul_bottle2"), SOULBOTTLE);
+		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "rage"), RAGE);
+		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "soul_trap"), SOULTRAP);
+		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "vampirism"), VAMPIRISM);
+		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "multi_jump"), MULTIJUMP);
+		Registry.register(Registries.ITEM, new Identifier("soul_magic", "wand"), WAND);
+		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle"), SOUL_BOTTLE);
+		//Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle2"), SOULBOTTLE);
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.

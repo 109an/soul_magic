@@ -1,4 +1,4 @@
-package ancient_arcana.arcana;
+package soul_magic.soul_magic;
 import net.minecraft.world.World;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -11,14 +11,14 @@ public class SoulBottleProjectile extends  ThrownItemEntity{
 	}
  
 	public SoulBottleProjectile(World world, LivingEntity owner) {
-		super(Ancient_arcana.SOUL_BOTTLE_PROJECTILE, owner, world); 
+		super(soul_magic.SOUL_BOTTLE_PROJECTILE, owner, world); 
 	}
  
 	public SoulBottleProjectile(World world, double x, double y, double z) {
-		super(Ancient_arcana.SOUL_BOTTLE_PROJECTILE, x, y, z, world); 
+		super(soul_magic.SOUL_BOTTLE_PROJECTILE, x, y, z, world); 
 	}
     @Override
 	protected Item getDefaultItem() {
-		return Ancient_arcana.SOUL_BOTTLE;
+		return soul_magic.SOUL_BOTTLE;
 	}
 }

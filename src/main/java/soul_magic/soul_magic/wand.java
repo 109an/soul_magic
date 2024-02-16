@@ -1,12 +1,12 @@
-package ancient_arcana.arcana;
-import ancient_arcana.arcana.Spell.SpellShapes;
-import ancient_arcana.arcana.Spell.Spells;
+package soul_magic.soul_magic;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import soul_magic.soul_magic.Spell.SpellShapes;
+import soul_magic.soul_magic.Spell.Spells;
 
 public class wand extends Item{
     

@@ -1,4 +1,4 @@
-package ancient_arcana.arcana;
+package soul_magic.soul_magic;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;

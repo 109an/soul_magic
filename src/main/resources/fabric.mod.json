@@ -1,39 +1,39 @@
 {
 	"schemaVersion": 1,
-	"id": "ancient_arcana",
+	"id": "soul_magic",
 	"version": "${version}",
-	"name": "ancient_arcana",
-	"description": "This is a small magic mod",
+	"name": "soul_magic",
+	"description": "This is an example description! Tell everyone what your mod is about!",
 	"authors": [
-		"Logan109an"
+		"Me!"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/ancient_arcana/icon.png",
+	"icon": "assets/soul_magic/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"ancient_arcana.arcana.Ancient_arcana"
+			"soul_magic.soul_magic.Soul_magic"
 		],
 		"client": [
-			"ancient_arcana.arcana.Ancient_arcanaClient"
+			"soul_magic.soul_magic.Soul_magicClient"
 		],
 		"fabric-datagen": [
-			"ancient_arcana.arcana.Ancient_arcanaDataGenerator"
+			"soul_magic.soul_magic.Soul_magicDataGenerator"
 		]
 	},
 	"mixins": [
-		"ancient_arcana.mixins.json",
+		"soul_magic.mixins.json",
 		{
-			"config": "ancient_arcana.client.mixins.json",
+			"config": "soul_magic.client.mixins.json",
 			"environment": "client"
 		}
 	],
 	"depends": {
-		"fabricloader": ">=0.15.6",
+		"fabricloader": ">=0.15.7",
 		"minecraft": "~1.19.4",
 		"java": ">=17",
 		"fabric-api": "*"

@@ -1,4 +1,4 @@
-package ancient_arcana.arcana;
+package soul_magic.soul_magic;
 
 import java.util.List;
 
@@ -17,6 +17,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
+import soul_magic.soul_magic.ParticleShapes;
 //TODO fix textures
 //TODO make the bottles explode when dropped on the dround as well
 //TODO higher levels of soul bottles
@@ -61,10 +62,10 @@ public class SoulBottle extends Item {
     public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
         if(itemStack.hasNbt()){
             if (itemStack.getNbt().getDouble("fill")<=100){
-                tooltip.add(Text.translatable("item.ancient_arcana.soul_bottle.tooltip", itemStack.getNbt().getDouble("fill")).formatted(Formatting.DARK_BLUE));
+                tooltip.add(Text.translatable("item.soul_magic.soul_bottle.tooltip", itemStack.getNbt().getDouble("fill")).formatted(Formatting.DARK_BLUE));
             }
             if (itemStack.getNbt().getDouble("fill")>100){
-                tooltip.add(Text.translatable("item.ancient_arcana.soul_bottle.tooltip", itemStack.getNbt().getDouble("fill")).formatted(Formatting.OBFUSCATED));
+                tooltip.add(Text.translatable("item.soul_magic.soul_bottle.tooltip", itemStack.getNbt().getDouble("fill")).formatted(Formatting.OBFUSCATED));
             }
         }
        else{

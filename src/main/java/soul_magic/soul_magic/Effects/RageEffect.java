@@ -1,4 +1,4 @@
-package ancient_arcana.arcana.Effects;
+package soul_magic.soul_magic.Effects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;

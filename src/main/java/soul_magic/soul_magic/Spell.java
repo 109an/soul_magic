@@ -1,9 +1,12 @@
-package ancient_arcana.arcana;
+package soul_magic.soul_magic;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
+import soul_magic.soul_magic.Aoe;
+import soul_magic.soul_magic.SpellProjectile;
+import soul_magic.soul_magic.ParticleShapes;
 public class Spell extends Spellticker{
     public int SpellPower;
     public SpellShapes Shape;

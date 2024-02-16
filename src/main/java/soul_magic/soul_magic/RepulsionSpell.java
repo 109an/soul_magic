@@ -1,14 +1,14 @@
-package ancient_arcana.arcana;
-/*package ancient_arcana.arcana.spells.aoe_spells;
+package soul_magic.soul_magic;
+/*package soul_magic.arcana.spells.aoe_spells;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.world.World;
 
 import java.util.*;
 
-import ancient_arcana.arcana.Aoe;
-import ancient_arcana.arcana.ParticleShapes;
-import ancient_arcana.arcana.Spellticker;
+import soul_magic.arcana.Aoe;
+import soul_magic.arcana.ParticleShapes;
+import soul_magic.arcana.Spellticker;
 public class RepulsionSpell extends Spellticker
 {
   World World;

@@ -1,4 +1,4 @@
-package ancient_arcana.arcana;
+package soul_magic.soul_magic;
 import java.util.Random;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.LivingEntity;
