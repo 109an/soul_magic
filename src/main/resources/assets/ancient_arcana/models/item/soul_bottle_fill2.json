@@ -1,0 +1,6 @@
+{
+    "parent": "ancient_arcana:item/soul_bottle",
+    "textures": {
+        "layer0": "ancient_arcana:item/soul_bottle_fill2"
+    }
+}

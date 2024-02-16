@@ -1,0 +1,16 @@
+{
+	"required": true,
+	"package": "ancient_arcana.arcana.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+		"VampirismMixin",
+		"SoulTrapMixin",
+		"MultiJumpClientMixin"
+	],
+	"client": [
+	  ],
+	"server": [],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

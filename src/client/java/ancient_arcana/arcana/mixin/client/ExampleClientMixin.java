@@ -1,4 +1,4 @@
-package soul_magic.soul_magic.mixin.client;
+package ancient_arcana.arcana.mixin.client;
 
 import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;
