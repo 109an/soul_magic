@@ -1,7 +1,5 @@
 package soul_magic.soul_magic;
-
 import java.util.List;
-
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -17,7 +15,6 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
-import soul_magic.soul_magic.ParticleShapes;
 //TODO fix textures
 //TODO make the bottles explode when dropped on the dround as well
 //TODO higher levels of soul bottles
@@ -62,14 +59,16 @@ public class SoulBottle extends Item {
     public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
         if(itemStack.hasNbt()){
             if (itemStack.getNbt().getDouble("fill")<=100){
+                System.out.println(itemStack.getNbt().getDouble("fill"));
                 tooltip.add(Text.translatable("item.soul_magic.soul_bottle.tooltip", itemStack.getNbt().getDouble("fill")).formatted(Formatting.DARK_BLUE));
             }
             if (itemStack.getNbt().getDouble("fill")>100){
+                System.out.println(itemStack.getNbt().getDouble("fill"));
                 tooltip.add(Text.translatable("item.soul_magic.soul_bottle.tooltip", itemStack.getNbt().getDouble("fill")).formatted(Formatting.OBFUSCATED));
             }
         }
        else{
-          tooltip.add(Text.translatable("empty" ).formatted(Formatting.DARK_BLUE));
+          tooltip.add(Text.translatable("item.soul_magic.soul_bottle.tooltip.empty" ).formatted(Formatting.DARK_BLUE));
          }
     }
     private void explode(World world, double fill, Entity entity){

@@ -1,9 +1,10 @@
 {
-    "item.ancient_arcana.soul_bottle.tooltip": "%d",
-    "item.ancient_arcana.soul_bottle": "Soul Bottle",
-    "effect.ancient_arcana.vampirism": "Vampirism",
-    "effect.ancient_arcana.soul_trap": "Soul Trap",
-    "effect.ancient_arcana.multi_jump": "Multi Jump",
-    "effect.ancient_arcana.rage": "Rage"
+    "item.soul_magic.soul_bottle.tooltip.empty": "empty",
+    "item.soul_magic.soul_bottle.tooltip": "%d",
+    "item.soul_magic.soul_bottle": "Soul Bottle",
+    "effect.soul_magic.vampirism": "Vampirism",
+    "effect.soul_magic.soul_trap": "Soul Trap",
+    "effect.soul_magic.multi_jump": "Multi Jump",
+    "effect.soul_magic.rage": "Rage"
 
 }

@@ -14,6 +14,7 @@ public class Soul_magicClient implements ClientModInitializer {
 		ModelPredicateProviderRegistry.register(Soul_magic.SOUL_BOTTLE, new Identifier("fill"), (stack, world, entity, seed) -> {
 			if(stack.hasNbt()){
 				double fill=stack.getNbt().getDouble("fill");
+				System.out.println("fill="+fill);
 				if(fill<25){
 					return 1.0f;
 				}
