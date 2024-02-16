@@ -26,6 +26,7 @@ public class SoulBottle extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
         if(playerEntity.getStackInHand(hand).hasNbt()){ 
          //somthing that drains the player's soul by taking xp
+         playerEntity
         }
         return TypedActionResult.success(playerEntity.getStackInHand(hand)); 
     }
