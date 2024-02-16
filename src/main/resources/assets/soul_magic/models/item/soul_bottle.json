@@ -1,44 +1,44 @@
 {
     "parent": "item/generated",
     "textures": {
-      "layer0": "ancient_arcana:item/soul_bottle"
+      "layer0": "soul_magic:item/soul_bottle"
     },
     "overrides": [
       {
           "predicate": {
               "fill": 0.0
           },
-          "model": "ancient_arcana:item/soul_bottle_empty"
+          "model": "soul_magic:item/soul_bottle_empty"
       },
       {
           "predicate": {
             "fill": 1.0
           },
-          "model": "ancient_arcana:item/soul_bottle_fill1"
+          "model": "soul_magic:item/soul_bottle_fill1"
       },
       {
           "predicate": {
             "fill":2.0
           },
-          "model": "ancient_arcana:item/soul_bottle_fill2"
+          "model": "soul_magic:item/soul_bottle_fill2"
       },
       {
         "predicate": {
           "fill":3.0
         },
-        "model": "ancient_arcana:item/soul_bottle_fill3"
+        "model": "soul_magic:item/soul_bottle_fill3"
       },
       {
         "predicate": {
           "fill":4.0
         },
-        "model": "ancient_arcana:item/soul_bottle_fill4"
+        "model": "soul_magic:item/soul_bottle_fill4"
       },
       {
         "predicate": {
           "fill":5.0
         },
-        "model": "ancient_arcana:item/soul_bottle_overfilled"
+        "model": "soul_magic:item/soul_bottle_overfilled"
     }
   ]  
  }
