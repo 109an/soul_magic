@@ -6,6 +6,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -24,10 +25,26 @@ public class SoulBottle extends Item {
     }
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
-        if(playerEntity.getStackInHand(hand).hasNbt()){ 
-         //somthing that drains the player's soul by taking xp
-         playerEntity
-        }
+        ItemStack soulbottle=playerEntity.getStackInHand(hand);
+            int xp=playerEntity.experienceLevel;
+            double ammount=xp*0.48;
+            if(xp>0){ 
+                playerEntity.addExperienceLevels(-1);
+                if(soulbottle.hasNbt()){
+                    double fill=soulbottle.getNbt().getDouble("fill");
+                    if(fill+ammount<100){
+                        soulbottle.getNbt().putDouble("fill", fill+ammount);
+                    }
+                    else{
+                        soulbottle.getNbt().putDouble("fill", 100);
+                    }
+                }
+                else{
+                    NbtCompound nbt=new NbtCompound();
+                    nbt.putDouble("fill", ammount);
+                    soulbottle.setNbt(nbt);
+                }
+            }
         return TypedActionResult.success(playerEntity.getStackInHand(hand)); 
     }
     
