@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.util.Identifier;
+import soul_magic.soul_magic.Soul_magic;
 
 public class Soul_magicClient implements ClientModInitializer {
 	@Override

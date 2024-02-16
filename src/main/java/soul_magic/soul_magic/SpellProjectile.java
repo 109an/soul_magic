@@ -13,11 +13,11 @@ public class SpellProjectile extends  ThrownItemEntity{
 	}
  
 	public SpellProjectile(World world, LivingEntity owner) {
-		super(soul_magic.SPELL_PROJECTILE, owner, world); 
+		super(Soul_magic.SPELL_PROJECTILE, owner, world); 
 	}
  
 	public SpellProjectile(World world, double x, double y, double z) {
-		super(soul_magic.SPELL_PROJECTILE, x, y, z, world); 
+		super(Soul_magic.SPELL_PROJECTILE, x, y, z, world); 
 	}
     @Override
 	protected Item getDefaultItem() {

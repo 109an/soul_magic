@@ -6,7 +6,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import soul_magic.soul_magic.soul_magic;
+import soul_magic.soul_magic.Soul_magic;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,11 +20,11 @@ public abstract class SoulTrapMixin
 	private void init(CallbackInfo info, @Local DamageSource damageSource)
 	{
     LivingEntity entity=((LivingEntity) (Object) this);
-	 if(entity.hasStatusEffect(soul_magic.SOULTRAP) && entity.getType()!= EntityType.IRON_GOLEM && entity.getType()!= EntityType.SNOW_GOLEM){
+	 if(entity.hasStatusEffect(Soul_magic.SOULTRAP) && entity.getType()!= EntityType.IRON_GOLEM && entity.getType()!= EntityType.SNOW_GOLEM){
 		if (damageSource.getAttacker() instanceof PlayerEntity){
 			PlayerEntity player=((PlayerEntity)damageSource.getAttacker());
 			for(int i=0; i<player.getInventory().main.size(); i++){ 
-				if (player.getInventory().main.get(i).getItem()==soul_magic.SOUL_BOTTLE){
+				if (player.getInventory().main.get(i).getItem()==Soul_magic.SOUL_BOTTLE){
 					ItemStack soulbottle=(player.getInventory().main.get(i));
 					double ammount=(entity.getAttributeBaseValue(EntityAttributes.GENERIC_MAX_HEALTH))*(entity.getAttributeBaseValue(EntityAttributes.GENERIC_MAX_HEALTH)/4);//4 for the lowest level, 25 for the next level, and 100 for the last level
 					if (soulbottle.hasNbt() && ammount+soulbottle.getNbt().getDouble("fill")<100){

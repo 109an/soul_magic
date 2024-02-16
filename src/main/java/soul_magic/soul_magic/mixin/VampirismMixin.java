@@ -1,7 +1,7 @@
 package soul_magic.soul_magic.mixin;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
-import soul_magic.soul_magic.soul_magic;
+import soul_magic.soul_magic.Soul_magic;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -14,9 +14,9 @@ public abstract class VampirismMixin
 	private void init(CallbackInfo info) 
 	{
 	LivingEntity attacking=((LivingEntity) (Object) this);
-    if (attacking !=null && attacking.hasStatusEffect(soul_magic.VAMPIRISM))
+    if (attacking !=null && attacking.hasStatusEffect(Soul_magic.VAMPIRISM))
     {
-	int amplifier=attacking.getStatusEffect(soul_magic.VAMPIRISM).getAmplifier();
+	int amplifier=attacking.getStatusEffect(Soul_magic.VAMPIRISM).getAmplifier();
 	System.out.println(amplifier);
     float attackdam=((float)attacking.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE));
 	float healing=(attackdam/8)*amplifier;

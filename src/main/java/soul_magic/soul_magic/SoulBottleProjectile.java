@@ -11,14 +11,14 @@ public class SoulBottleProjectile extends  ThrownItemEntity{
 	}
  
 	public SoulBottleProjectile(World world, LivingEntity owner) {
-		super(soul_magic.SOUL_BOTTLE_PROJECTILE, owner, world); 
+		super(Soul_magic.SOUL_BOTTLE_PROJECTILE, owner, world); 
 	}
  
 	public SoulBottleProjectile(World world, double x, double y, double z) {
-		super(soul_magic.SOUL_BOTTLE_PROJECTILE, x, y, z, world); 
+		super(Soul_magic.SOUL_BOTTLE_PROJECTILE, x, y, z, world); 
 	}
     @Override
 	protected Item getDefaultItem() {
-		return soul_magic.SOUL_BOTTLE;
+		return Soul_magic.SOUL_BOTTLE;
 	}
 }
