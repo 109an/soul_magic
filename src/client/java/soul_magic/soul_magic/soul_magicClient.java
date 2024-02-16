@@ -5,7 +5,7 @@ import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.util.Identifier;
 
-public class Ancient_arcanaClient implements ClientModInitializer {
+public class soul_magicClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		EntityRendererRegistry.register(Ancient_arcana.SPELL_PROJECTILE, FlyingItemEntityRenderer::new);
