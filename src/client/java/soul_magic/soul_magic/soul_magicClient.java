@@ -5,12 +5,12 @@ import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.util.Identifier;
 
-public class soul_magicClient implements ClientModInitializer {
+public class Soul_magicClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
-		EntityRendererRegistry.register(soul_magic.SPELL_PROJECTILE, FlyingItemEntityRenderer::new);
-		EntityRendererRegistry.register(soul_magic.SOUL_BOTTLE_PROJECTILE, FlyingItemEntityRenderer::new);
-		ModelPredicateProviderRegistry.register(soul_magic.SOUL_BOTTLE, new Identifier("fill"), (stack, world, entity, seed) -> {
+		EntityRendererRegistry.register(Soul_magic.SPELL_PROJECTILE, FlyingItemEntityRenderer::new);
+		EntityRendererRegistry.register(Soul_magic.SOUL_BOTTLE_PROJECTILE, FlyingItemEntityRenderer::new);
+		ModelPredicateProviderRegistry.register(Soul_magic.SOUL_BOTTLE, new Identifier("fill"), (stack, world, entity, seed) -> {
 			if(stack.hasNbt()){
 				double fill=stack.getNbt().getDouble("fill");
 				if(fill<25){

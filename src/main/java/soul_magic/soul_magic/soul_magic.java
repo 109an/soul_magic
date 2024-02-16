@@ -1,5 +1,4 @@
 package soul_magic.soul_magic;
-
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
@@ -18,7 +17,7 @@ import soul_magic.soul_magic.Effects.RageEffect;
 import soul_magic.soul_magic.Effects.SoulTrapEffect;
 import soul_magic.soul_magic.Effects.VampirismEffect;
 import net.minecraft.registry.Registry;
-public class soul_magic implements ModInitializer
+public class Soul_magic implements ModInitializer
  {
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.
@@ -39,7 +38,7 @@ public class soul_magic implements ModInitializer
 		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "rage"), RAGE);
 		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "soul_trap"), SOULTRAP);
 		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "vampirism"), VAMPIRISM);
-		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "multi_jump"), MULTIJUMP);
+		//Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "multi_jump"), MULTIJUMP);
 		Registry.register(Registries.ITEM, new Identifier("soul_magic", "wand"), WAND);
 		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle"), SOUL_BOTTLE);
 		//Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle2"), SOULBOTTLE);
