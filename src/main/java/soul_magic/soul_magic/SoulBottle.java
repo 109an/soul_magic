@@ -19,11 +19,11 @@ import net.minecraft.world.World;
 //TODO fix textures by adding layers and use data generation for crafting them
 //TODO make the bottles explode when dropped on the dround as well
 //TODO higher levels of soul bottles via nbt
+//for texture, add a pixel every 12.5 fill
 public class SoulBottle extends Item {
     public int tier;
-    public SoulBottle(Settings settings, int tier){ 
+    public SoulBottle(Settings settings){ 
         super(settings);
-        this.tier=tier;
     }
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {

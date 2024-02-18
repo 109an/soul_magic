@@ -9,7 +9,7 @@ public class Soul_magicClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		EntityRendererRegistry.register(Soul_magic.SPELL_PROJECTILE, FlyingItemEntityRenderer::new);
-		ModelPredicateProviderRegistry.register(Soul_magic.SOUL_BOTTLE_TIER1, new Identifier("fill"), (stack, world, entity, seed) -> {
+		/*ModelPredicateProviderRegistry.register(Soul_magic.SOUL_BOTTLE_TIER3, new Identifier("fill"), (stack, world, entity, seed) -> {
 			if(stack.hasNbt()){
 				double fill=stack.getNbt().getDouble("fill");
 				System.out.println("fill="+fill);
@@ -33,7 +33,7 @@ public class Soul_magicClient implements ClientModInitializer {
 				}
 			}
 			return 0.0F;
-		});
+		});*/
 		// This entrypoint is suitable for setting up client-specific logic, such as rendering.
 	}
 }

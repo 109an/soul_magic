@@ -26,7 +26,7 @@ public abstract class SoulTrapMixin
 			PlayerEntity player=((PlayerEntity)damageSource.getAttacker());
 			for(int i=0; i<player.getInventory().main.size(); i++){ 
 				Item item=player.getInventory().main.get(i).getItem();
-				if (item==Soul_magic.SOUL_BOTTLE_TIER1 || item==Soul_magic.SOUL_BOTTLE_TIER2 || item==Soul_magic.SOUL_BOTTLE_TIER3){
+				if (item==Soul_magic.SOUL_BOTTLE_TIER3 || item==Soul_magic.SOUL_BOTTLE_TIER3 || item==Soul_magic.SOUL_BOTTLE_TIER3){
 					ItemStack soulbottle=(player.getInventory().main.get(i));
 					int num=1;
 					if(((SoulBottle)item).tier==1){

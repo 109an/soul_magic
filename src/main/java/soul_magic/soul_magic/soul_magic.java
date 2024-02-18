@@ -23,9 +23,9 @@ public class Soul_magic implements ModInitializer
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final wand WAND = new wand(new FabricItemSettings().maxCount(1));
-	public static final Item SOUL_BOTTLE_TIER1 = new SoulBottle(new FabricItemSettings().maxCount(1), 1);
-	public static final Item SOUL_BOTTLE_TIER2 = new SoulBottle(new FabricItemSettings().maxCount(1), 2);
-	public static final Item SOUL_BOTTLE_TIER3 = new SoulBottle(new FabricItemSettings().maxCount(1), 3);
+	public static final Item SOUL_BOTTLE_TIER1 = new SoulBottleTier1(new FabricItemSettings().maxCount(1));
+	public static final Item SOUL_BOTTLE_TIER2 = new SoulBottleTier2(new FabricItemSettings().maxCount(1));
+	public static final Item SOUL_BOTTLE_TIER3 = new SoulBottleTier3(new FabricItemSettings().maxCount(1));
 	public static final StatusEffect VAMPIRISM = new VampirismEffect();
 	public static final StatusEffect SOULTRAP = new SoulTrapEffect();
 	public static final StatusEffect RAGE = new RageEffect();
@@ -41,9 +41,9 @@ public class Soul_magic implements ModInitializer
 		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "vampirism"), VAMPIRISM);
 		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "multi_jump"), MULTIJUMP);
 		Registry.register(Registries.ITEM, new Identifier("soul_magic", "wand"), WAND);
-		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle"), SOUL_BOTTLE_TIER1);
-		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle"), SOUL_BOTTLE_TIER2);
-		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle"), SOUL_BOTTLE_TIER3);
+		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle1"), SOUL_BOTTLE_TIER1);
+		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle2"), SOUL_BOTTLE_TIER2);
+		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle3"), SOUL_BOTTLE_TIER3);
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.

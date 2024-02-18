@@ -1,7 +1,8 @@
 {
     "parent": "item/generated",
     "textures": {
-      "layer0": "soul_magic:item/soul_bottle"
+      "layer0": "soul_magic:item/soul_bottle_empty",
+      "layer1": "soul_magic:item/soul_bottle_top2"
     },
     "overrides": [
       {
@@ -38,7 +39,7 @@
         "predicate": {
           "fill":5.0
         },
-        "model": "soul_magic:item/soul_bottle_overfilled"
+        "model": "soul_magic:item/soul_bottle_crack4"
     }
   ]  
  }
