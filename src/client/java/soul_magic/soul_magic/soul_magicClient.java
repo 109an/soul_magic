@@ -4,14 +4,12 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.util.Identifier;
-import soul_magic.soul_magic.Soul_magic;
 
 public class Soul_magicClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		EntityRendererRegistry.register(Soul_magic.SPELL_PROJECTILE, FlyingItemEntityRenderer::new);
-		EntityRendererRegistry.register(Soul_magic.SOUL_BOTTLE_PROJECTILE, FlyingItemEntityRenderer::new);
-		ModelPredicateProviderRegistry.register(Soul_magic.SOUL_BOTTLE, new Identifier("fill"), (stack, world, entity, seed) -> {
+		ModelPredicateProviderRegistry.register(Soul_magic.SOUL_BOTTLE_TIER1, new Identifier("fill"), (stack, world, entity, seed) -> {
 			if(stack.hasNbt()){
 				double fill=stack.getNbt().getDouble("fill");
 				System.out.println("fill="+fill);

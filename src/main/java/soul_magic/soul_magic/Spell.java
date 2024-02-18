@@ -4,45 +4,35 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
-public class Spell extends Spellticker{
+public class Spell{
+    //TODO make "save or suck" spells that dont effect entities with higher hp
     public int SpellPower;
-    public SpellShapes Shape;
     public int ShapePower;
     public Spells Type;
+    public World world;
+    public LivingEntity Caster;
     public boolean IsAoe;
     public boolean IsHoming;
-    public Spell(World world, LivingEntity caster, int castime,SpellShapes shape, Spells type, int spellpower, int shapepower, boolean isaoe){
-     super(world, caster, castime);
+    public Spell(World world, LivingEntity caster, int castime, Spells type, int spellpower, int shapepower){
+     this.world=world;
+     this.Caster=caster;
      this.ShapePower=shapepower;
      this.SpellPower=spellpower;
-     this.Shape=shape;
      this.Type=type;
-     this.IsAoe=isaoe;
+     if(shapepower>3){
+        IsHoming=true;
      }
-     public void setHoming(Boolean Homing){
-        this.IsHoming=Homing;
      }
      public void setAoe(Boolean Aoe){
         this.IsAoe=Aoe;
-     }
-    @Override
-    public void onSpellCast(){}
-    @Override
-    public void whileOngoing(){}
-    @Override
-    public void whileCasting(){ //this works fine
-        this.world.addParticle(ParticleTypes.FLASH, Caster.getX(), Caster.getY(), Caster.getZ(), 0, 0, 0);
     }
-    @Override
-    public void whileActive(){}
-    @Override
-    public void afterCast(){
-        switch (Shape) {
-            case PROJECTILE:
+    public void castSpell(){
+        switch (Type) {
+            case DAMAGE:
             SpellProjectile spellProjectile=new SpellProjectile(this.world, Caster.getX(), Caster.getEyeY(), Caster.getZ()){
                 @Override
                 public void onCollision(HitResult hitResult){
-                    if(IsAoe){
+                    if(ShapePower>2){
                             Aoe aoe=new Aoe(this.world, Caster, ShapePower, ShapePower, hitResult.getPos().getX(), hitResult.getPos().getY(), hitResult.getPos().getX()){
                                 @Override
                                 public void whileActive() {
@@ -101,7 +91,7 @@ public class Spell extends Spellticker{
             spellProjectile.setVelocity(Caster, Caster.getPitch(), Caster.getYaw(), Caster.getRoll(), 1, 0.3f);
             this.world.spawnEntity(spellProjectile);
             break;
-            case SELF:
+            case FIRE_RES:
              //new selfspell   
                 break;
         
@@ -109,8 +99,6 @@ public class Spell extends Spellticker{
                 break;
         }
     }
-    public void onSpellEnded(){}
-    
     public enum Spells{
        DAMAGE,
        IGNITE,
@@ -156,9 +144,5 @@ public class Spell extends Spellticker{
        PACIFY_ENDERMAN,
        PACIFY_ILLAGER,
 
-     }
-     public enum SpellShapes{
-        PROJECTILE,
-        SELF,
      }
 }

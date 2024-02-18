@@ -23,12 +23,13 @@ public class Soul_magic implements ModInitializer
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final wand WAND = new wand(new FabricItemSettings().maxCount(1));
-	public static final Item SOUL_BOTTLE = new SoulBottle(new FabricItemSettings().maxCount(1));
+	public static final Item SOUL_BOTTLE_TIER1 = new SoulBottle(new FabricItemSettings().maxCount(1), 1);
+	public static final Item SOUL_BOTTLE_TIER2 = new SoulBottle(new FabricItemSettings().maxCount(1), 2);
+	public static final Item SOUL_BOTTLE_TIER3 = new SoulBottle(new FabricItemSettings().maxCount(1), 3);
 	public static final StatusEffect VAMPIRISM = new VampirismEffect();
 	public static final StatusEffect SOULTRAP = new SoulTrapEffect();
 	public static final StatusEffect RAGE = new RageEffect();
 	public static final StatusEffect MULTIJUMP = new MultiJumpEffect();
-	public static final EntityType<SoulBottleProjectile> SOUL_BOTTLE_PROJECTILE = Registry.register (Registries.ENTITY_TYPE, new Identifier("soul_magic", "soul_bottle"), FabricEntityTypeBuilder.<SoulBottleProjectile>create(SpawnGroup.MISC, SoulBottleProjectile::new).dimensions(EntityDimensions.fixed(0.25F, 0.25F)).trackRangeBlocks(4).trackedUpdateRate(10).build());
 	public static final EntityType<SpellProjectile> SPELL_PROJECTILE = Registry.register (Registries.ENTITY_TYPE, new Identifier("soul_magic", "spellprojectile"), FabricEntityTypeBuilder.<SpellProjectile>create(SpawnGroup.MISC, SpellProjectile::new).dimensions(EntityDimensions.fixed(0.25F, 0.25F)).trackRangeBlocks(4).trackedUpdateRate(10).build());
 	public static final Logger LOGGER = LoggerFactory.getLogger("soul_magic");
 
@@ -38,10 +39,11 @@ public class Soul_magic implements ModInitializer
 		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "rage"), RAGE);
 		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "soul_trap"), SOULTRAP);
 		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "vampirism"), VAMPIRISM);
-		//Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "multi_jump"), MULTIJUMP);
+		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "multi_jump"), MULTIJUMP);
 		Registry.register(Registries.ITEM, new Identifier("soul_magic", "wand"), WAND);
-		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle"), SOUL_BOTTLE);
-		//Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle2"), SOULBOTTLE);
+		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle"), SOUL_BOTTLE_TIER1);
+		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle"), SOUL_BOTTLE_TIER2);
+		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle"), SOUL_BOTTLE_TIER3);
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.

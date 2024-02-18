@@ -16,18 +16,29 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
-//TODO fix textures
+//TODO fix textures by adding layers and use data generation for crafting them
 //TODO make the bottles explode when dropped on the dround as well
-//TODO higher levels of soul bottles
+//TODO higher levels of soul bottles via nbt
 public class SoulBottle extends Item {
-    public SoulBottle(Settings settings){ 
+    public int tier;
+    public SoulBottle(Settings settings, int tier){ 
         super(settings);
+        this.tier=tier;
     }
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
         ItemStack soulbottle=playerEntity.getStackInHand(hand);
             int xp=playerEntity.experienceLevel;
-            double ammount=xp*0.48;
+            double ammount=xp;
+            if(this.tier==1){
+                ammount=xp*0.4761904762;
+            }
+            if(this.tier==2){
+                ammount=xp*0.07843137255;
+            }
+            if(this.tier==3){
+                ammount=xp*0.0198019802;
+            }            
             if(xp>0){ 
                 playerEntity.addExperienceLevels(-1);
                 if(soulbottle.hasNbt()){
@@ -53,8 +64,8 @@ public class SoulBottle extends Item {
        if (stack.hasNbt()){
            double fill=stack.getNbt().getDouble("fill");
            if(fill>100){
-            double damage=2*(fill/10);
-                if(damage>60){
+            double damage=2*this.tier*(fill/10);
+                if(damage>60*this.tier){
                     damage=60;
                 }
                 if(stack.getNbt().contains("tickslefttoexplode")){
@@ -90,9 +101,9 @@ public class SoulBottle extends Item {
          }
     }
     private void explode(World world, double fill, Entity entity){
-        double damage=fill/10;
-        if(damage>30){
-            damage=30;
+        double damage=(fill/10)*this.tier;
+        if(damage>30*this.tier){
+            damage=30*this.tier;
         }
         double size=fill/20;
         if(size>20){
