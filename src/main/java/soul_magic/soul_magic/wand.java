@@ -5,7 +5,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import soul_magic.soul_magic.Spell.SpellShapes;
 import soul_magic.soul_magic.Spell.Spells;
 
 public class wand extends Item{
@@ -15,8 +14,8 @@ public class wand extends Item{
     }
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
-        Spell damage=new Spell(world, playerEntity, 8, SpellShapes.PROJECTILE, Spells.DAMAGE, 10, 10, true);
-        damage.startSpell();
+        Spell damage=new Spell(world, playerEntity, 8, Spells.DAMAGE, 10, 10);
+        damage.castSpell();
          //playerEntity.getOffHandStack().damage(50, playerEntity, player -> player.sendToolBreakStatus(hand));
         return TypedActionResult.success(playerEntity.getStackInHand(hand)); 
     }
