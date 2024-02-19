@@ -1,5 +1,5 @@
 {
-    "parent": "soul_magic:item/soul_bottle_tier2",
+    "parent": "item/generated",
     "textures": {
       "layer0": "soul_magic:item/soul_bottle_empty",
       "layer1": "soul_magic:item/soul_bottle_top2"
