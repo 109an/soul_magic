@@ -88,10 +88,10 @@ public class SoulBottle extends Item {
     public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
         if(itemStack.hasNbt()){
             if (itemStack.getNbt().getDouble("fill")<=100){
-                tooltip.add(Text.translatable("item.soul_magic.soul_bottle.tooltip", itemStack.getNbt().getDouble("fill")).formatted(Formatting.DARK_BLUE));
+                tooltip.add(Text.translatable("item.soul_magic.soul_bottle.tooltip", ((int)itemStack.getNbt().getDouble("fill"))).formatted(Formatting.DARK_BLUE));
             }
             if (itemStack.getNbt().getDouble("fill")>100){
-                tooltip.add(Text.translatable("item.soul_magic.soul_bottle.tooltip", itemStack.getNbt().getDouble("fill")).formatted(Formatting.OBFUSCATED));
+                tooltip.add(Text.translatable("item.soul_magic.soul_bottle.tooltip", ((int)itemStack.getNbt().getDouble("fill"))).formatted(Formatting.OBFUSCATED));
             }
         }
        else{

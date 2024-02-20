@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "soul_magic:item/soul_bottle1_empty",
+    "layer0": "soul_magic:item/soul_bottle2_empty",
     "layer1": "soul_magic:item/soul_bottle_top2"
   
   },
@@ -10,67 +10,67 @@
       "predicate": {
           "fill": 0.0
       },
-      "model": "soul_magic:item/soul_bottle1_empty"
+      "model": "soul_magic:item/soul_bottle2_empty"
   },
     {
         "predicate": {
             "fill": 0.1
         },
-        "model": "soul_magic:item/soul_bottle1_fill1"
+        "model": "soul_magic:item/soul_bottle2_fill1"
     },
     {
         "predicate": {
           "fill": 0.2
         },
-        "model": "soul_magic:item/soul_bottle1_fill2"
+        "model": "soul_magic:item/soul_bottle2_fill2"
     },
     {
         "predicate": {
           "fill":0.3
         },
-        "model": "soul_magic:item/soul_bottle1_fill3"
+        "model": "soul_magic:item/soul_bottle2_fill3"
     },
     {
       "predicate": {
         "fill":0.4
       },
-      "model": "soul_magic:item/soul_bottle1_fill4"
+      "model": "soul_magic:item/soul_bottle2_fill4"
     },
     {
       "predicate": {
         "fill":0.5
       },
-      "model": "soul_magic:item/soul_bottle1_fill5"
+      "model": "soul_magic:item/soul_bottle2_fill5"
     },
     {
       "predicate": {
         "fill":0.6
       },
-      "model": "soul_magic:item/soul_bottle1_fill6"
+      "model": "soul_magic:item/soul_bottle2_fill6"
     },
     {
       "predicate": {
         "fill":0.7
       },
-      "model": "soul_magic:item/soul_bottle1_fill7"
+      "model": "soul_magic:item/soul_bottle2_fill7"
     },
     {
       "predicate": {
         "fill":0.8
       },
-      "model": "soul_magic:item/soul_bottle1_full"
+      "model": "soul_magic:item/soul_bottle2_full"
     },
     {
       "predicate": {
         "fill":0.9
       },
-      "model": "soul_magic:item/soul_bottle1_crack"
+      "model": "soul_magic:item/soul_bottle2_crack"
     },
     {
       "predicate": {
         "fill":1.0
       },
-      "model": "soul_magic:item/soul_bottle1_crack"
+      "model": "soul_magic:item/soul_bottle2_crack"
     }
 ]  
 }
