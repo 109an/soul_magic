@@ -26,6 +26,7 @@ public class Soul_magic implements ModInitializer
 	public static final Item SOUL_BOTTLE_TIER1 = new SoulBottleTier1(new FabricItemSettings().maxCount(1));
 	public static final Item SOUL_BOTTLE_TIER2 = new SoulBottleTier2(new FabricItemSettings().maxCount(1));
 	public static final Item SOUL_BOTTLE_TIER3 = new SoulBottleTier3(new FabricItemSettings().maxCount(1));
+	public static final Item SPELL_ITEM = new SpellItem(new FabricItemSettings().maxCount(1));
 	public static final StatusEffect VAMPIRISM = new VampirismEffect();
 	public static final StatusEffect SOULTRAP = new SoulTrapEffect();
 	public static final StatusEffect RAGE = new RageEffect();
@@ -44,6 +45,7 @@ public class Soul_magic implements ModInitializer
 		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle_tier1"), SOUL_BOTTLE_TIER1);
 		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle_tier2"), SOUL_BOTTLE_TIER2);
 		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle_tier3"), SOUL_BOTTLE_TIER3);
+		Registry.register(Registries.ITEM, new Identifier("soul_magic", "spell_item"), SPELL_ITEM);
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.

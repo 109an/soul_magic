@@ -14,55 +14,61 @@
     },
       {
           "predicate": {
-              "fill": 1.0
+              "fill": 0.1
           },
           "model": "soul_magic:item/soul_bottle1_fill1"
       },
       {
           "predicate": {
-            "fill": 2.0
+            "fill": 0.2
           },
           "model": "soul_magic:item/soul_bottle1_fill2"
       },
       {
           "predicate": {
-            "fill":3.0
+            "fill":0.3
           },
           "model": "soul_magic:item/soul_bottle1_fill3"
       },
       {
         "predicate": {
-          "fill":4.0
+          "fill":0.4
         },
         "model": "soul_magic:item/soul_bottle1_fill4"
       },
       {
         "predicate": {
-          "fill":5.0
+          "fill":0.5
         },
         "model": "soul_magic:item/soul_bottle1_fill5"
       },
       {
         "predicate": {
-          "fill":6.0
+          "fill":0.6
         },
         "model": "soul_magic:item/soul_bottle1_fill6"
       },
       {
         "predicate": {
-          "fill":7.0
+          "fill":0.7
         },
         "model": "soul_magic:item/soul_bottle1_fill7"
       },
       {
         "predicate": {
-          "fill":8.0
+          "fill":0.8
         },
         "model": "soul_magic:item/soul_bottle1_full"
       },
       {
         "predicate": {
-          "fill":9.0
+          "fill":0.9
+        },
+        "model": "soul_magic:item/soul_bottle1_crack"
+      },
+      {
+        "predicate": {
+          "fill":1.0
         },
         "model": "soul_magic:item/soul_bottle1_crack"
       }
