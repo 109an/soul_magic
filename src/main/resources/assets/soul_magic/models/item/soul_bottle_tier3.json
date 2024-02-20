@@ -1,45 +1,76 @@
 {
-    "parent": "item/generated",
-    "textures": {
-      "layer0": "soul_magic:item/soul_bottle_empty",
-      "layer1": "soul_magic:item/soul_bottle_top3"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "soul_magic:item/soul_bottle3_empty",
+    "layer1": "soul_magic:item/soul_bottle_top3"
+  
+  },
+  "overrides": [
+    {
+      "predicate": {
+          "fill": 0.0
+      },
+      "model": "soul_magic:item/soul_bottle3_empty"
+  },
+    {
+        "predicate": {
+            "fill": 0.1
+        },
+        "model": "soul_magic:item/soul_bottle3_fill1"
     },
-    "overrides": [
-      {
-          "predicate": {
-              "fill": 0.0
-          },
-          "model": "soul_magic:item/soul_bottle_empty"
-      },
-      {
-          "predicate": {
-            "fill": 1.0
-          },
-          "model": "soul_magic:item/soul_bottle_fill1"
-      },
-      {
-          "predicate": {
-            "fill":2.0
-          },
-          "model": "soul_magic:item/soul_bottle_fill2"
-      },
-      {
+    {
         "predicate": {
-          "fill":3.0
+          "fill": 0.2
         },
-        "model": "soul_magic:item/soul_bottle_fill3"
-      },
-      {
+        "model": "soul_magic:item/soul_bottle3_fill2"
+    },
+    {
         "predicate": {
-          "fill":4.0
+          "fill":0.3
         },
-        "model": "soul_magic:item/soul_bottle_fill4"
+        "model": "soul_magic:item/soul_bottle3_fill3"
+    },
+    {
+      "predicate": {
+        "fill":0.4
       },
-      {
-        "predicate": {
-          "fill":5.0
-        },
-        "model": "soul_magic:item/soul_bottle_crack4"
+      "model": "soul_magic:item/soul_bottle3_fill4"
+    },
+    {
+      "predicate": {
+        "fill":0.5
+      },
+      "model": "soul_magic:item/soul_bottle3_fill5"
+    },
+    {
+      "predicate": {
+        "fill":0.6
+      },
+      "model": "soul_magic:item/soul_bottle3_fill6"
+    },
+    {
+      "predicate": {
+        "fill":0.7
+      },
+      "model": "soul_magic:item/soul_bottle3_fill7"
+    },
+    {
+      "predicate": {
+        "fill":0.8
+      },
+      "model": "soul_magic:item/soul_bottle3_full"
+    },
+    {
+      "predicate": {
+        "fill":0.9
+      },
+      "model": "soul_magic:item/soul_bottle3_crack"
+    },
+    {
+      "predicate": {
+        "fill":1.0
+      },
+      "model": "soul_magic:item/soul_bottle3_crack"
     }
-  ]  
- }
+]  
+}

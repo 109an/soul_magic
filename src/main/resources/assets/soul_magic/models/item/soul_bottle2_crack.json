@@ -1,0 +1,6 @@
+{
+    "parent": "soul_magic:item/soul_bottle_tier1",
+    "textures": {
+        "layer0": "soul_magic:item/soul_bottle_crack"
+    }
+}
