@@ -105,7 +105,7 @@ public class SoulBottle extends Item {
         }
         double size=fill/20;
         if(size>20){
-            size=20;
+           size=20;
         }
         Box box=new Box(entity.getX()-size, entity.getY()-size, entity.getZ()-size, entity.getX()+size, entity.getY()+size, entity.getZ()+size);
         List<Entity> entitys=world.getOtherEntities(entity, box);

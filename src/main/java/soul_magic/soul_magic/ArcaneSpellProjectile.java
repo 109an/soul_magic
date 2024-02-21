@@ -6,18 +6,18 @@ import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
-public class SpellProjectile extends  ThrownItemEntity{
+public class ArcaneSpellProjectile extends  ThrownItemEntity{
 	
-	public SpellProjectile(EntityType<? extends ThrownItemEntity> entityType, World world) {
+	public ArcaneSpellProjectile(EntityType<? extends ThrownItemEntity> entityType, World world) {
 		super(entityType, world);
 	}
  
-	public SpellProjectile(World world, LivingEntity owner) {
-		super(Soul_magic.SPELL_PROJECTILE, owner, world); 
+	public ArcaneSpellProjectile(World world, LivingEntity owner) {
+		super(Soul_magic.ARCANE_SPELL_PROJECTILE, owner, world); 
 	}
  
-	public SpellProjectile(World world, double x, double y, double z) {
-		super(Soul_magic.SPELL_PROJECTILE, x, y, z, world); 
+	public ArcaneSpellProjectile(World world, double x, double y, double z) {
+		super(Soul_magic.ARCANE_SPELL_PROJECTILE, x, y, z, world); 
 	}
     @Override
 	protected Item getDefaultItem() {
