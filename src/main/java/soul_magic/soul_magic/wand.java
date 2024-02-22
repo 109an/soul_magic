@@ -14,7 +14,7 @@ public class wand extends Item{
     }
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
-        Spell damage=new Spell(world, playerEntity, 8, Spells.DAMAGE, 10, 10);
+        Spell damage=new Spell(world, playerEntity, 8, Spells.DAMAGE_PROJECTILE, 2);
         damage.castSpell();
          //playerEntity.getOffHandStack().damage(50, playerEntity, player -> player.sendToolBreakStatus(hand));
         return TypedActionResult.success(playerEntity.getStackInHand(hand)); 

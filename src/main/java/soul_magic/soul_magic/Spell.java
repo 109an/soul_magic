@@ -15,7 +15,7 @@ public class Spell{
      }
     public void castSpell(){
         switch (Spell) {
-          case DAMAGE_PROJECTILE:
+          case MAGIC_MISSLE:
           case EXPLOSIVE_DAMAGE_PROJECTILE:
           
             
@@ -29,7 +29,7 @@ public class Spell{
         return this.Spell.type;
     }
     public enum Spells{
-      DAMAGE_PROJECTILE(SpellType.ARCANE),
+      MAGIC_MISSLE(SpellType.ARCANE),
       EXPLOSIVE_DAMAGE_PROJECTILE(SpellType.ARCANE),
       
       
