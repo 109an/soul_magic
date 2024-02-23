@@ -3,6 +3,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.World;
 public class Spell{
     //TODO make "save or suck" spells that dont effect entities with higher hp
+    //model spells after dnd spells (9 levels of spells, each level takes more soul to cast)
     public int Power;
     public Spells Spell;
     public World world;
