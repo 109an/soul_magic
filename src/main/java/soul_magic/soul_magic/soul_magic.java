@@ -47,7 +47,7 @@ public class Soul_magic implements ModInitializer
 		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle_tier2"), SOUL_BOTTLE_TIER2);
 		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle_tier3"), SOUL_BOTTLE_TIER3);
 		Registry.register(Registries.ITEM, new Identifier("soul_magic", "spell_item"), SPELL_ITEM);
-		Registry.register(Registries.ITEM, new Identifier("soul_magic", "magic_sword"), MAGIC_SWORD);
+		Registry.register(Registries.ITEM, new Identifier("soul_magic", "magic_sword_item"), MAGIC_SWORD);
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.

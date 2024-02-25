@@ -7,3 +7,4 @@ public class MagicSword extends Item{
         super(settings);
     }
 }
+
