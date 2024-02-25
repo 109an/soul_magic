@@ -1,4 +1,4 @@
-package soul_magic.soul_magic;
+package soul_magic.soul_magic.spells;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;

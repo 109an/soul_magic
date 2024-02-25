@@ -1,5 +1,6 @@
-package soul_magic.soul_magic;
+package soul_magic.soul_magic.spells;
 import net.minecraft.world.World;
+import soul_magic.soul_magic.Soul_magic;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;

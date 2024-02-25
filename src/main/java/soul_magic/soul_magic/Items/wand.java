@@ -1,11 +1,12 @@
-package soul_magic.soul_magic;
+package soul_magic.soul_magic.Items;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import soul_magic.soul_magic.Spell.Spells;
+import soul_magic.soul_magic.spells.Spell;
+import soul_magic.soul_magic.spells.Spell.Spells;
 
 public class wand extends Item{
     

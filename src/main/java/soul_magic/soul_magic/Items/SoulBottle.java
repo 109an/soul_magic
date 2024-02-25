@@ -1,4 +1,4 @@
-package soul_magic.soul_magic;
+package soul_magic.soul_magic.Items;
 import java.util.List;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
@@ -16,6 +16,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
+import soul_magic.soul_magic.ParticleShapes;
 public class SoulBottle extends Item {
     public int tier;
     public SoulBottle(Settings settings){ 

@@ -1,14 +1,30 @@
 package soul_magic.soul_magic;
+import org.lwjgl.glfw.GLFW;
+
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
+import net.minecraft.client.util.InputUtil;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class Soul_magicClient implements ClientModInitializer {
+	private static KeyBinding keyBinding;
 	@Override
 	public void onInitializeClient() {
 		EntityRendererRegistry.register(Soul_magic.ARCANE_SPELL_PROJECTILE, FlyingItemEntityRenderer::new);
+		keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+    "key.soul_magic.spellgui",
+    InputUtil.Type.KEYSYM,
+    GLFW.GLFW_KEY_R, // The keycode of the key
+    "category.soul_magic.gui"));
+	ClientTickEvents.END_CLIENT_TICK.register(client -> {
+    while (keyBinding.wasPressed()) {
+	client.player.sendMessage(Text.literal("Key 1 was pressed!"), false);}});
 		ModelPredicateProviderRegistry.register(Soul_magic.SOUL_BOTTLE_TIER1, new Identifier("fill"), (stack, world, entity, seed) -> {
 			if(stack.hasNbt()){
 				double fill=stack.getNbt().getDouble("fill");

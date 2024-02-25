@@ -16,6 +16,13 @@ import soul_magic.soul_magic.Effects.MultiJumpEffect;
 import soul_magic.soul_magic.Effects.RageEffect;
 import soul_magic.soul_magic.Effects.SoulTrapEffect;
 import soul_magic.soul_magic.Effects.VampirismEffect;
+import soul_magic.soul_magic.Items.MagicSwordItem;
+import soul_magic.soul_magic.Items.SoulBottleTier1;
+import soul_magic.soul_magic.Items.SoulBottleTier2;
+import soul_magic.soul_magic.Items.SoulBottleTier3;
+import soul_magic.soul_magic.Items.SpellItem;
+import soul_magic.soul_magic.Items.wand;
+import soul_magic.soul_magic.spells.ArcaneSpellProjectile;
 import net.minecraft.registry.Registry;
 public class Soul_magic implements ModInitializer
  {
@@ -23,7 +30,7 @@ public class Soul_magic implements ModInitializer
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Item WAND = new wand(new FabricItemSettings().maxCount(1));
-	public static final Item MAGIC_SWORD = new MagicSword(new FabricItemSettings().maxCount(1));
+	public static final Item MAGIC_SWORD = new MagicSwordItem(new FabricItemSettings().maxCount(1));
 	public static final Item SOUL_BOTTLE_TIER1 = new SoulBottleTier1(new FabricItemSettings().maxCount(1));
 	public static final Item SOUL_BOTTLE_TIER2 = new SoulBottleTier2(new FabricItemSettings().maxCount(1));
 	public static final Item SOUL_BOTTLE_TIER3 = new SoulBottleTier3(new FabricItemSettings().maxCount(1));

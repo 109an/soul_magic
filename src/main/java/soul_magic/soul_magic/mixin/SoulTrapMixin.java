@@ -7,8 +7,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import soul_magic.soul_magic.SoulBottle;
 import soul_magic.soul_magic.Soul_magic;
+import soul_magic.soul_magic.Items.SoulBottle;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

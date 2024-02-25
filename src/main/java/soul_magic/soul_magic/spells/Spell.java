@@ -1,4 +1,4 @@
-package soul_magic.soul_magic;
+package soul_magic.soul_magic.spells;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.World;
 public class Spell{

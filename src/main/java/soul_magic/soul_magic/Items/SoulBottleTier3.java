@@ -1,4 +1,4 @@
-package soul_magic.soul_magic;
+package soul_magic.soul_magic.Items;
 
 public class SoulBottleTier3 extends SoulBottle{
     public SoulBottleTier3(Settings settings){ 

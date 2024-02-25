@@ -1,4 +1,4 @@
-package soul_magic.soul_magic;
+package soul_magic.soul_magic.Items;
 
 import net.minecraft.item.Item;
 

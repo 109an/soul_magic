@@ -1,4 +1,4 @@
-package soul_magic.soul_magic;
+package soul_magic.soul_magic.spells;
 /*package soul_magic.arcana.spells.aoe_spells;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particle.ParticleTypes;
