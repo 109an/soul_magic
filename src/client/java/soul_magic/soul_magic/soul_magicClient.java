@@ -11,12 +11,14 @@ import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import soul_magic.soul_magic.geckolib.SpellFireballEntityRender;
 
 public class Soul_magicClient implements ClientModInitializer {
 	private static KeyBinding keyBinding;
 	@Override
 	public void onInitializeClient() {
 		EntityRendererRegistry.register(Soul_magic.ARCANE_SPELL_PROJECTILE, FlyingItemEntityRenderer::new);
+		EntityRendererRegistry.register(Soul_magic.SPELL_FIREBALL, SpellFireballEntityRender::new);
 		keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
     "key.soul_magic.spellgui",
     InputUtil.Type.KEYSYM,

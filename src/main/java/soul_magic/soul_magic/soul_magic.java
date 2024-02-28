@@ -23,6 +23,7 @@ import soul_magic.soul_magic.Items.SoulBottleTier3;
 import soul_magic.soul_magic.Items.SpellItem;
 import soul_magic.soul_magic.Items.wand;
 import soul_magic.soul_magic.spells.ArcaneSpellProjectile;
+import soul_magic.soul_magic.spells.spellEntity.SpellFireball;
 import net.minecraft.registry.Registry;
 public class Soul_magic implements ModInitializer
  {
@@ -40,6 +41,10 @@ public class Soul_magic implements ModInitializer
 	public static final StatusEffect RAGE = new RageEffect();
 	public static final StatusEffect MULTIJUMP = new MultiJumpEffect();
 	public static final EntityType<ArcaneSpellProjectile> ARCANE_SPELL_PROJECTILE = Registry.register (Registries.ENTITY_TYPE, new Identifier("soul_magic", "spellprojectile"), FabricEntityTypeBuilder.<ArcaneSpellProjectile>create(SpawnGroup.MISC, ArcaneSpellProjectile::new).dimensions(EntityDimensions.fixed(0.25F, 0.25F)).trackRangeBlocks(4).trackedUpdateRate(10).build());
+	public static final EntityType<SpellFireball> SPELL_FIREBALL = Registry.register(
+		Registries.ENTITY_TYPE, new Identifier("soul_magic", "spell_fireball"),
+		FabricEntityTypeBuilder.create(SpawnGroup.MISC, SpellFireball::new)
+				.dimensions(EntityDimensions.fixed(1.0f, 0.5f)).build());
 	public static final Logger LOGGER = LoggerFactory.getLogger("soul_magic");
 
 	@Override

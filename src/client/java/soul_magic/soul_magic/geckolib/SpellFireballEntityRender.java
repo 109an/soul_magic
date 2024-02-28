@@ -1,0 +1,14 @@
+package soul_magic.soul_magic.geckolib;
+
+import net.minecraft.client.render.entity.EntityRendererFactory;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
+import software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer;
+import soul_magic.soul_magic.spells.spellEntity.SpellFireball;
+
+public class SpellFireballEntityRender extends GeoEntityRenderer<SpellFireball> {
+    public SpellFireballEntityRender(EntityRendererFactory.Context context) {
+        super(context, new SpellFireballEntityModel());
+        //AutoGlowingGeoLayer<SpellFireball> autoGlowingGeoLayer=new AutoGlowingGeoLayer<>(this);
+        //addRenderLayer(autoGlowingGeoLayer);
+    }
+}

@@ -1,0 +1,35 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.model.new": {
+			"loop": true
+		},
+		"3d_fireball_spin_animation": {
+			"loop": true,
+			"animation_length": 1.08337,
+			"bones": {
+				"root": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [365, 0, 0]
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [157, 0, 0]
+						},
+						"1.0": {
+							"vector": [-91, 0, 0]
+						}
+					}
+				}
+			},
+			"particle_effects": {},
+			"timeline": {}
+		}
+	},
+	"geckolib_format_version": 2
+}

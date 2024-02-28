@@ -2,8 +2,8 @@ package soul_magic.soul_magic.mixin;
 import net.minecraft.client.input.Input;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import soul_magic.soul_magic.Soul_magic;
+//import net.minecraft.entity.effect.StatusEffectInstance;
+//import soul_magic.soul_magic.Soul_magic;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -21,7 +21,7 @@ public abstract class MultiJumpClientMixin
 	@Inject(at = @At("HEAD"), method = "tickMovement")
 	private void init(CallbackInfo info) 
 	{
-    StatusEffectInstance multijump=this.player.getStatusEffect(Soul_magic.MULTIJUMP);
+   /* StatusEffectInstance multijump=this.player.getStatusEffect(Soul_magic.MULTIJUMP);
     if(player.isOnGround() && multijump !=null)
     {
      jumps=multijump.getAmplifier()+1;
@@ -31,6 +31,7 @@ public abstract class MultiJumpClientMixin
         jumps--;
         player.setVelocity(player.getVelocity().getX(), 0.35, player.getVelocity().getZ());
         player.setJumping(true);
-    }
+    }*/
 	}
 }
+//this code needs to be put into the client mixins section, and I need to make this a packet that is sent to the server

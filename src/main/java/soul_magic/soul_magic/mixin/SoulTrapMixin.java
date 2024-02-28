@@ -9,18 +9,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import soul_magic.soul_magic.Soul_magic;
 import soul_magic.soul_magic.Items.SoulBottle;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.llamalad7.mixinextras.sugar.Local;
 @Mixin(LivingEntity.class)
-public abstract class SoulTrapMixin
-{
+public abstract class SoulTrapMixin{
 	@Inject(at = @At("HEAD"), method = "onDeath")
-	private void init(CallbackInfo info, @Local DamageSource damageSource)
-	{
+	private void init(CallbackInfo info, @Local DamageSource damageSource){
     LivingEntity entity=((LivingEntity) (Object) this);
 	 if(entity.hasStatusEffect(Soul_magic.SOULTRAP) && entity.getType()!= EntityType.IRON_GOLEM && entity.getType()!= EntityType.SNOW_GOLEM){
 		if (damageSource.getAttacker() instanceof PlayerEntity){

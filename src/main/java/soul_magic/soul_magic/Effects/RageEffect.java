@@ -22,7 +22,7 @@ public class RageEffect extends StatusEffect {
      StatusEffectInstance strength=new StatusEffectInstance(StatusEffects.STRENGTH, 20, amplifier-1, false, false,true);
      enitity.addStatusEffect(strength);
     }
-    if(health<=maxhealth/3 && amplifier>=2){
+    if(health<=maxhealth/6 && amplifier>=2){
      StatusEffectInstance speed=new StatusEffectInstance(StatusEffects.SPEED, 20, amplifier-1, false, false, true);
      enitity.addStatusEffect(speed);
      if(amplifier>=3 && health<=maxhealth/4){

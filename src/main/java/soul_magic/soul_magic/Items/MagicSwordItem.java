@@ -10,7 +10,6 @@ import software.bernie.geckolib.animatable.client.RenderProvider;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.Animation;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -21,6 +20,7 @@ import soul_magic.soul_magic.geckolib.MagicSwordItemRender;
 
 public class MagicSwordItem extends Item implements GeoItem{
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+    protected static final RawAnimation GEM = RawAnimation.begin().thenLoop("magic_sword_item.animation.json");
     private final Supplier<Object> renderProvider = GeoItem.makeRenderer(this);
     public MagicSwordItem(Settings settings) {
         super(settings);
@@ -57,7 +57,7 @@ public class MagicSwordItem extends Item implements GeoItem{
         controllerRegistrar.add(new AnimationController<GeoAnimatable>(this, 0, this::predicate));
     }
     private<T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState){
-        tAnimationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
+        tAnimationState.getController().setAnimation(GEM);
         return PlayState.CONTINUE;
     }
 }
