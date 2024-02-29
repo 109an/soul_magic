@@ -20,10 +20,11 @@ import soul_magic.soul_magic.geckolib.MagicSwordItemRender;
 
 public class MagicSwordItem extends Item implements GeoItem{
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
-    protected static final RawAnimation GEM = RawAnimation.begin().thenLoop("magic_sword_item.animation.json");
+    protected static final RawAnimation GEM = RawAnimation.begin().thenLoop("magic_sword_item.animation");
     private final Supplier<Object> renderProvider = GeoItem.makeRenderer(this);
     public MagicSwordItem(Settings settings) {
         super(settings);
+        
     }
 
     @Override
