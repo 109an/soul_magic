@@ -13,6 +13,7 @@ public class SpellObject{
     //TODO make "save or suck" spells that dont effect entities with higher hp
     //model spells after dnd spells (9 levels of spells, each level takes more soul to cast)
     //change level in the enum to minlevel and allow for upcsting like in dnd
+    //leaan into the soul theme by  making all spells dark or soul fire
     public int Power;
     public Spell Spelltocast;
     public World world;

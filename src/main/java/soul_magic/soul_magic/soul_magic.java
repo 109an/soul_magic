@@ -2,11 +2,14 @@ package soul_magic.soul_magic;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.Item;
+import net.minecraft.item.SwordItem;
+import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
@@ -20,6 +23,7 @@ import soul_magic.soul_magic.Items.MagicSwordItem;
 import soul_magic.soul_magic.Items.SoulBottleTier1;
 import soul_magic.soul_magic.Items.SoulBottleTier2;
 import soul_magic.soul_magic.Items.SoulBottleTier3;
+import soul_magic.soul_magic.Items.SoulToolMaterial;
 import soul_magic.soul_magic.Items.SpellItem;
 import soul_magic.soul_magic.Items.wand;
 import soul_magic.soul_magic.spells.ArcaneSpellProjectile;
@@ -31,7 +35,8 @@ public class Soul_magic implements ModInitializer
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Item WAND = new wand(new FabricItemSettings().maxCount(1));
-	public static final Item MAGIC_SWORD = new MagicSwordItem(new FabricItemSettings().maxCount(1));
+	public static final Item SOUL_SHARD = new wand(new FabricItemSettings());
+	public static final Item MAGIC_SWORD = new SwordItem(SoulToolMaterial.INSTANCE, 7, -1.6f,  new FabricItemSettings().maxCount(1));
 	public static final Item SOUL_BOTTLE_TIER1 = new SoulBottleTier1(new FabricItemSettings().maxCount(1));
 	public static final Item SOUL_BOTTLE_TIER2 = new SoulBottleTier2(new FabricItemSettings().maxCount(1));
 	public static final Item SOUL_BOTTLE_TIER3 = new SoulBottleTier3(new FabricItemSettings().maxCount(1));
@@ -40,6 +45,7 @@ public class Soul_magic implements ModInitializer
 	public static final StatusEffect SOULTRAP = new SoulTrapEffect();
 	public static final StatusEffect RAGE = new RageEffect();
 	public static final StatusEffect MULTIJUMP = new MultiJumpEffect();
+	public static final DefaultParticleType SPELL_CAST = FabricParticleTypes.simple();
 	public static final EntityType<ArcaneSpellProjectile> ARCANE_SPELL_PROJECTILE = Registry.register (Registries.ENTITY_TYPE, new Identifier("soul_magic", "spellprojectile"), FabricEntityTypeBuilder.<ArcaneSpellProjectile>create(SpawnGroup.MISC, ArcaneSpellProjectile::new).dimensions(EntityDimensions.fixed(0.25F, 0.25F)).trackRangeBlocks(4).trackedUpdateRate(10).build());
 	public static final EntityType<SpellFireball> SPELL_FIREBALL = Registry.register(
 		Registries.ENTITY_TYPE, new Identifier("soul_magic", "spell_fireball"),
@@ -55,11 +61,13 @@ public class Soul_magic implements ModInitializer
 		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "vampirism"), VAMPIRISM);
 		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "multi_jump"), MULTIJUMP);
 		Registry.register(Registries.ITEM, new Identifier("soul_magic", "wand"), WAND);
+		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_shard"), SOUL_SHARD);
 		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle_tier1"), SOUL_BOTTLE_TIER1);
 		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle_tier2"), SOUL_BOTTLE_TIER2);
 		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle_tier3"), SOUL_BOTTLE_TIER3);
 		Registry.register(Registries.ITEM, new Identifier("soul_magic", "spell_item"), SPELL_ITEM);
 		Registry.register(Registries.ITEM, new Identifier("soul_magic", "magic_sword_item"), MAGIC_SWORD);
+		Registry.register(Registries.PARTICLE_TYPE, new Identifier("soul_magic", "spell_cast"), SPELL_CAST);
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
