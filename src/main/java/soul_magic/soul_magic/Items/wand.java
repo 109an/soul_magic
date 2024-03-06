@@ -5,8 +5,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import soul_magic.soul_magic.Soul_magic;
-import soul_magic.soul_magic.spells.spellEntity.SpellFireball;
+import soul_magic.soul_magic.hud.RageViganette;
+import soul_magic.soul_magic.spells.SpellObject;
+import soul_magic.soul_magic.spells.SpellObject.Spell;
 
 public class wand extends Item{
     
@@ -15,13 +16,10 @@ public class wand extends Item{
     }
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
-        
-         //playerEntity.getOffHandStack().damage(50, playerEntity, player -> player.sendToolBreakStatus(hand));
-         SpellFireball fireball=new SpellFireball(Soul_magic.SPELL_FIREBALL, world);
-         fireball.setPosition(playerEntity.getPos());
-         fireball.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), playerEntity.getRoll(), 3, 0.3f);
-         world.spawnEntity(fireball);
+            SpellObject spellObject=new SpellObject(world, playerEntity, Spell.MISTY_STEP, 9);
+            spellObject.castSpell();
+            RageViganette rageViganette = new RageViganette();
+            rageViganette.setRendering(true);
         return TypedActionResult.success(playerEntity.getStackInHand(hand)); 
     }
-    
 }
