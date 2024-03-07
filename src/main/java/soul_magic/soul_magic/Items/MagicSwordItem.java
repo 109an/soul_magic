@@ -4,11 +4,15 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import net.minecraft.client.render.item.BuiltinModelItemRenderer;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.item.Item;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
+import net.minecraft.item.ToolMaterial;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.world.World;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.animatable.client.RenderProvider;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -23,13 +27,12 @@ import software.bernie.geckolib.util.RenderUtils;
 import soul_magic.soul_magic.Soul_magic;
 import soul_magic.soul_magic.geckolib.MagicSwordItemRender;
 
-public class MagicSwordItem extends Item implements GeoItem{
+public class MagicSwordItem extends SwordItem implements GeoItem{
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
     protected static final RawAnimation GEM = RawAnimation.begin().thenLoop("magic_sword_item.animation");
     private final Supplier<Object> renderProvider = GeoItem.makeRenderer(this);
-    public MagicSwordItem(Settings settings) {
-        super(settings);
-        
+    public MagicSwordItem(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
+        super(toolMaterial, attackDamage, attackSpeed, settings);
     }
 
     @Override
@@ -70,16 +73,31 @@ public class MagicSwordItem extends Item implements GeoItem{
         if (stack.hasNbt()){
             NbtCompound nbt = stack.getNbt();
             int level = nbt.getInt("level");
-            StatusEffectInstance soulTrap = new StatusEffectInstance(Soul_magic.SOULTRAP, 30, 2);
+            StatusEffectInstance soulTrap = new StatusEffectInstance(Soul_magic.SOULTRAP, 30, level/3);
             target.addStatusEffect(soulTrap);
-            target.damage(target.getDamageSources().indirectMagic(attacker, attacker), 4+level);
         }
         else{
             StatusEffectInstance soulTrap = new StatusEffectInstance(Soul_magic.SOULTRAP, 30, 2);
             target.addStatusEffect(soulTrap);
-            target.damage(target.getDamageSources().indirectMagic(attacker, attacker), 5);
         }
        return super.postHit(stack, target, attacker);
-
+    }
+    @Override
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected){
+      if(entity instanceof PlayerEntity){
+        if(!stack.hasNbt()){
+            NbtCompound nbtCompound = new NbtCompound();
+            nbtCompound.putInt("time_left", 1200);
+            stack.setNbt(nbtCompound);
+        }
+        else{
+            NbtCompound nbtCompound = stack.getNbt();
+            nbtCompound.putInt("time_left", nbtCompound.getInt("time_left")-1);
+            stack.setNbt(nbtCompound);
+        }
+        if(stack.getNbt().getInt("time_left") == 0){
+            stack.decrement(1);
+        }
+      }
     }
 }

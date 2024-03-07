@@ -127,6 +127,7 @@ public class SoulBottle extends Item {
             }
         }
         ItemStack soulbottle = getHighest(soulBottles);
+        System.out.println(getHighest(soulBottles));
         if (soulbottle != null){
             int num = 0;
             int tier = ((SoulBottle)soulbottle.getItem()).tier;
@@ -169,16 +170,17 @@ public class SoulBottle extends Item {
             int maxtier = 0;
             for (ItemStack bottle : soulBottles) {
                 int bottletier = ((SoulBottle)bottle.getItem()).tier;
-                if (bottletier == 3){
+                double fill = bottle.getNbt().getDouble("fill");
+                if (bottletier == 3 && fill < 100){
                     maxtier = bottletier;
                     soulbottle = bottle;
                     break;
                 }
-                if (bottletier == 2){
+                if (bottletier == 2 && fill < 100){
                     maxtier = bottletier;
                     soulbottle = bottle;
                 }
-                if (bottletier == 1 && maxtier < 2){
+                if (bottletier == 1 && maxtier < 2 && fill < 100){
                     soulbottle = bottle;
                 }
             }

@@ -36,7 +36,7 @@ public class Soul_magic implements ModInitializer
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Item WAND = new wand(new FabricItemSettings().maxCount(1));
 	public static final Item SOUL_SHARD = new wand(new FabricItemSettings());
-	public static final Item MAGIC_SWORD = new SwordItem(SoulToolMaterial.INSTANCE, 7, -1.6f,  new FabricItemSettings().maxCount(1));
+	public static final Item MAGIC_SWORD = new MagicSwordItem(SoulToolMaterial.INSTANCE, 7, -1.6f,  new FabricItemSettings().maxCount(1));
 	public static final Item SOUL_BOTTLE_TIER1 = new SoulBottleTier1(new FabricItemSettings().maxCount(1));
 	public static final Item SOUL_BOTTLE_TIER2 = new SoulBottleTier2(new FabricItemSettings().maxCount(1));
 	public static final Item SOUL_BOTTLE_TIER3 = new SoulBottleTier3(new FabricItemSettings().maxCount(1));

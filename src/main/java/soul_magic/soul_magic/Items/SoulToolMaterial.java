@@ -6,6 +6,8 @@ import soul_magic.soul_magic.Soul_magic;
 
 public class SoulToolMaterial implements ToolMaterial {
     public static final SoulToolMaterial INSTANCE = new SoulToolMaterial();
+    public SoulToolMaterial(){
+    }
     @Override
     public float getAttackDamage() {
         return 1.0f;

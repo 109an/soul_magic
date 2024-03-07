@@ -20,6 +20,7 @@ public class SoulShard extends Item{
         StatusEffectInstance wither = new StatusEffectInstance(StatusEffects.WITHER, 10, 2);
         playerEntity.addStatusEffect(wither);
         ParticleShapes.sphereShape(world, ParticleTypes.SOUL, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), 1, 30, 0, true);
+        playerEntity.getItemCooldownManager().set(this, 20);
         return TypedActionResult.success(playerEntity.getStackInHand(hand)); 
     }
 }
