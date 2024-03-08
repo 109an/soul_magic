@@ -5,6 +5,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import soul_magic.soul_magic.Soul_magic;
 import soul_magic.soul_magic.util.Aoe;
@@ -49,11 +50,7 @@ public class SpellObject{
               Caster.addStatusEffect(lifesteal);
               break;
             case MISTY_STEP:
-              HitResult hitResult=Caster.raycast(10*Power, 1.0f, false);
-              System.out.println(hitResult);
-              ParticleShapes.circleShape(world, ParticleTypes.ENCHANT, Caster.getX(), Caster.getY(), Caster.getZ(), 3 , 100, 0, true);
-              Caster.setPos(hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z);
-              ParticleShapes.circleShape(world, ParticleTypes.ENCHANT, hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z, 3 , 100, 0, true);
+              Caster.setVelocity(Vec3d.fromPolar(Caster.getPitch(), Caster.getYaw()).multiply(Power));
             break;
             case SHOCKWAVE:
               Caster.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1f, 1f);
@@ -62,11 +59,11 @@ public class SpellObject{
                 hit.damage(hit.getDamageSources().indirectMagic(Caster, Caster), Power*2);
                 double x=-((Caster.getX()-hit.getX())+1)/(hit.distanceTo(Caster));
                 double z=-((Caster.getZ()-hit.getZ())+1)/(hit.distanceTo(Caster));
-                ParticleShapes.burstShape(world, ParticleTypes.CRIT, Caster.getX(), Caster.getY(), Caster.getZ(), Power*3, Power*500,  Power*3, false);
+                ParticleShapes.circleShape(world, ParticleTypes.SOUL, x, z, z, Power*3 , 250, 0, true);
+                ParticleShapes.circleShape(world, ParticleTypes.SCULK_SOUL, x, z, z, Power*3 , 250, 0, true);
                 hit.setVelocity(x, 0.2, z);
+                }
               }
-                //add a new particle shapes method that creates a shockwave of particles
-            }
             default:
               break;
           }

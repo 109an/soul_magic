@@ -29,17 +29,4 @@ public class RageViganette{
             HudRenderCallback.EVENT.register((matrixStack, tickDelta) -> {viganette(matrixStack, tickDelta);});
         }
     }
-    public static void renderCheck(){
-        MinecraftClient client = MinecraftClient.getInstance();
-        ClientPlayerEntity player = client.player;
-        
-		if (player != null){
-            double health=player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH);
-            if(player.hasStatusEffect(Soul_magic.RAGE) && health<=health/2){
-                RageViganette rageViganette = new RageViganette();
-                System.out.println("hi");
-                rageViganette.setRendering(true);
-        	}
-        }
-    }
 }

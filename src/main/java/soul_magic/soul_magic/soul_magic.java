@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import soul_magic.soul_magic.Effects.MultiJumpEffect;
 import soul_magic.soul_magic.Effects.RageEffect;
+import soul_magic.soul_magic.Effects.ShieldEffect;
 import soul_magic.soul_magic.Effects.SoulTrapEffect;
 import soul_magic.soul_magic.Effects.VampirismEffect;
 import soul_magic.soul_magic.Items.MagicSwordItem;
@@ -42,6 +43,7 @@ public class Soul_magic implements ModInitializer
 	public static final Item SOUL_BOTTLE_TIER3 = new SoulBottleTier3(new FabricItemSettings().maxCount(1));
 	public static final Item SPELL_ITEM = new SpellItem(new FabricItemSettings().maxCount(1));
 	public static final StatusEffect VAMPIRISM = new VampirismEffect();
+	public static final StatusEffect SHIELD = new ShieldEffect();
 	public static final StatusEffect SOULTRAP = new SoulTrapEffect();
 	public static final StatusEffect RAGE = new RageEffect();
 	public static final StatusEffect MULTIJUMP = new MultiJumpEffect();
@@ -57,6 +59,7 @@ public class Soul_magic implements ModInitializer
 	public void onInitialize()
 	{
 		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "rage"), RAGE);
+		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "shield"), SHIELD);
 		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "soul_trap"), SOULTRAP);
 		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "vampirism"), VAMPIRISM);
 		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "multi_jump"), MULTIJUMP);

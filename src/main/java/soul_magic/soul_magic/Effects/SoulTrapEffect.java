@@ -15,7 +15,7 @@ public class SoulTrapEffect extends StatusEffect{
     }
     @Override
     public void applyUpdateEffect(LivingEntity enitity, int amplifier){
-      StatusEffectInstance statuseffect= new StatusEffectInstance(StatusEffects.WITHER, 1, amplifier, false, false, false);
+      StatusEffectInstance statuseffect= new StatusEffectInstance(StatusEffects.WITHER, 10, amplifier, false, false, false);
       enitity.addStatusEffect(statuseffect);
   }
 }

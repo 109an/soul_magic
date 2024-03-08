@@ -100,4 +100,8 @@ public class MagicSwordItem extends SwordItem implements GeoItem{
         }
       }
     }
+    @Override
+    public boolean hasGlint(ItemStack stack) {//this makes the sword constantly have an enchant glien
+        return true;
+     }
 }

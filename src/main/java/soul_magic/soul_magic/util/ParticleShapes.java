@@ -4,10 +4,39 @@ import java.util.Random;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import soul_magic.soul_magic.spells.SpellObject;
 public class ParticleShapes{
     private static double pi=Math.PI;
+    public static void boxShape(World world, ParticleEffect particle, Box box, boolean filled, int count){
+      if(filled != true){
+        for(int i=0; i<count; i++){
+          double x = box.maxX*Math.random()*plusminus();
+          double y = box.maxY*Math.random()*plusminus();
+          double z = box.maxZ*Math.random()*plusminus();
+           world.addParticle(particle, box.getCenter().x+x, box.getCenter().y+y, box.getCenter().z+z,  0, 0, 0);
+        }
+      }
+      else{
+        count = count/3;
+        for(int i=0; i<count; i++){
+          double y = box.maxY*Math.random()*plusminus();
+          double z = box.maxZ*Math.random()*plusminus();
+           world.addParticle(particle, box.getCenter().x, box.getCenter().y+y, box.getCenter().z+z,  0, 0, 0);
+        }
+        for(int i=0; i<count; i++){
+          double x = box.maxX*Math.random()*plusminus();
+          double z = box.maxZ*Math.random()*plusminus();
+           world.addParticle(particle, box.getCenter().x+x, box.getCenter().y, box.getCenter().z+z,  0, 0, 0);
+        }
+        for(int i=0; i<count; i++){
+          double x = box.maxX*Math.random()*plusminus();
+          double y = box.maxY*Math.random()*plusminus();
+           world.addParticle(particle, box.getCenter().x+x, box.getCenter().y+y, box.getCenter().z,  0, 0, 0);
+        }
+      }
+    }
     public static void genericSpellCast(World world, SpellObject spell){
      switch (spell.Spelltocast.type) {
       case DARK:

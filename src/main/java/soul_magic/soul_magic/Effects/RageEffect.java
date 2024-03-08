@@ -1,13 +1,10 @@
 package soul_magic.soul_magic.Effects;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
-import soul_magic.soul_magic.hud.RageViganette; 
 public class RageEffect extends StatusEffect {
   public RageEffect() {
     super(StatusEffectCategory.BENEFICIAL, 0x8B0000);
