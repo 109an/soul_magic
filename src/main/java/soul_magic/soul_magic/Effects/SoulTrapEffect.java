@@ -6,16 +6,19 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 
 public class SoulTrapEffect extends StatusEffect{
+    StatusEffectInstance statuseffect;
     public SoulTrapEffect() {
       super(StatusEffectCategory.BENEFICIAL, 0x301934);
     }
     @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier){
+      statuseffect= new StatusEffectInstance(StatusEffects.WITHER, duration, amplifier);
       return true;
     }
     @Override
     public void applyUpdateEffect(LivingEntity enitity, int amplifier){
-      StatusEffectInstance statuseffect= new StatusEffectInstance(StatusEffects.WITHER, 10, amplifier, false, false, false);
+      if(statuseffect != null){
       enitity.addStatusEffect(statuseffect);
+      }
   }
 }

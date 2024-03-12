@@ -2,7 +2,6 @@ package soul_magic.soul_magic.Items;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
-
 import net.minecraft.client.render.item.BuiltinModelItemRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -18,6 +17,7 @@ import software.bernie.geckolib.animatable.client.RenderProvider;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.Animation;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -26,10 +26,8 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.RenderUtils;
 import soul_magic.soul_magic.Soul_magic;
 import soul_magic.soul_magic.geckolib.MagicSwordItemRender;
-
 public class MagicSwordItem extends SwordItem implements GeoItem{
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
-    protected static final RawAnimation GEM = RawAnimation.begin().thenLoop("magic_sword_item.animation");
     private final Supplier<Object> renderProvider = GeoItem.makeRenderer(this);
     public MagicSwordItem(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
         super(toolMaterial, attackDamage, attackSpeed, settings);
@@ -66,7 +64,7 @@ public class MagicSwordItem extends SwordItem implements GeoItem{
         controllerRegistrar.add(new AnimationController<GeoAnimatable>(this, 0, this::predicate));
     }
     private<T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState){
-        tAnimationState.getController().setAnimation(GEM);
+        tAnimationState.getController().setAnimation(RawAnimation.begin().then("gem", Animation.LoopType.LOOP));
         return PlayState.CONTINUE;
     }
      public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker){
@@ -77,7 +75,7 @@ public class MagicSwordItem extends SwordItem implements GeoItem{
             target.addStatusEffect(soulTrap);
         }
         else{
-            StatusEffectInstance soulTrap = new StatusEffectInstance(Soul_magic.SOULTRAP, 30, 2);
+            StatusEffectInstance soulTrap = new StatusEffectInstance(Soul_magic.SOULTRAP, 30, 1);
             target.addStatusEffect(soulTrap);
         }
        return super.postHit(stack, target, attacker);
@@ -93,6 +91,7 @@ public class MagicSwordItem extends SwordItem implements GeoItem{
         else{
             NbtCompound nbtCompound = stack.getNbt();
             nbtCompound.putInt("time_left", nbtCompound.getInt("time_left")-1);
+            System.out.print(nbtCompound.getInt("time_left"));
             stack.setNbt(nbtCompound);
         }
         if(stack.getNbt().getInt("time_left") == 0){
@@ -101,7 +100,7 @@ public class MagicSwordItem extends SwordItem implements GeoItem{
       }
     }
     @Override
-    public boolean hasGlint(ItemStack stack) {//this makes the sword constantly have an enchant glien
+    public boolean hasGlint(ItemStack stack) {//this makes the sword constantly have a glint
         return true;
      }
 }
