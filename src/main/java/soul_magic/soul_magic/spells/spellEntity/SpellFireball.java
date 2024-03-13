@@ -18,7 +18,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 public class SpellFireball extends ProjectileEntity implements GeoEntity{
     //TODO the uv mappings for this dont seem to be working, also it never moves or rotates
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
-    protected static final RawAnimation SPIN = RawAnimation.begin().thenLoop("fireball_spin_animation");
+    protected static final RawAnimation SPIN = RawAnimation.begin().thenLoop("spin");
      public SpellFireball(EntityType<? extends ProjectileEntity> entityType, World world) {
         super(entityType, world);
     }

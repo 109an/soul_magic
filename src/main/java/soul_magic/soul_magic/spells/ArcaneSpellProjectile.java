@@ -7,6 +7,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 public class ArcaneSpellProjectile extends  ThrownItemEntity{
@@ -38,8 +39,10 @@ public class ArcaneSpellProjectile extends  ThrownItemEntity{
 	@Override
 	public void tick() {
 		super.tick();
-		 ParticleShapes.sphereShape(world, ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), this.getWidth(), 5, 0.2, true);
-     	 ParticleShapes.sphereShape(world, ParticleTypes.SOUL, this.getX(), this.getY(), this.getZ(), this.getWidth(), 5, 0.2, true);
+		if(!this.world.isClient) {
+		ParticleShapes.sphereShape(((ServerWorld)world), ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), this.getWidth(), 5, true);
+     	 ParticleShapes.sphereShape(((ServerWorld)world), ParticleTypes.SOUL, this.getX(), this.getY(), this.getZ(), this.getWidth(), 5, true);
+		}
 		 this.setVelocity(this.getVelocity().multiply(1.02));
 	}
 }

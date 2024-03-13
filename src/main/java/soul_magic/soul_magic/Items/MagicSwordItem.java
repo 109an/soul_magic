@@ -82,6 +82,7 @@ public class MagicSwordItem extends SwordItem implements GeoItem{
     }
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected){
+        super.inventoryTick(stack, world, entity, slot, selected);
       if(entity instanceof PlayerEntity){
         if(!stack.hasNbt()){
             NbtCompound nbtCompound = new NbtCompound();

@@ -1,5 +1,6 @@
 package soul_magic.soul_magic.Items;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,7 +16,6 @@ public class SpellItem extends Item{
     }
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
-        
         ItemStack stack = playerEntity.getStackInHand(hand);
         if(stack.hasNbt()){
             SpellObject spell = new SpellObject(world, playerEntity, stack.getNbt().getString("name"), stack.getNbt().getInt("power"));

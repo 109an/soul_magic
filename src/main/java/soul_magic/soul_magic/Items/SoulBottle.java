@@ -10,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -114,8 +115,10 @@ public class SoulBottle extends Item {
                 hit.damage(hit.getDamageSources().magic(), (int)(damage));
             }
         }
-        ParticleShapes.sphereShape(world, ParticleTypes.SCULK_SOUL, entity.getX(), entity.getY(), entity.getZ(), ((int)size), ((int)(size*100)), 0, true);
-        ParticleShapes.sphereShape(world, ParticleTypes.SOUL, entity.getX(), entity.getY(), entity.getZ(), 0.3, 500, 0.5, true); 
+        if(!world.isClient){
+            ParticleShapes.sphereShape(((ServerWorld)world), ParticleTypes.SCULK_SOUL, entity.getX(), entity.getY(), entity.getZ(), ((int)size), ((int)(size*100)), true);
+            ParticleShapes.burstShape(((ServerWorld)world), ParticleTypes.SOUL, entity.getX(), entity.getEyeY(), entity.getZ(), ((int)(size*100)), 1, true);
+        }
     }
     public static void fill(LivingEntity entity, PlayerEntity player){
         ArrayList<ItemStack> soulBottles = new ArrayList<ItemStack>();

@@ -9,6 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Box;
@@ -48,7 +49,8 @@ public class SpellObject{
       if (Spelltocast.minpower<=Power){
 
         Caster.playSound(SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, 1, 1);
-        ParticleShapes.genericSpellCast(world, this);
+
+        ParticleShapes.genericSpellCast(this);
           switch (Spelltocast) {
             case MAGIC_MISSLE:
             //homing projectile
@@ -69,8 +71,10 @@ public class SpellObject{
                 hit.damage(hit.getDamageSources().indirectMagic(Caster, Caster), Power*2);
                 double x=-((Caster.getX()-hit.getX())+1)/(hit.distanceTo(Caster));
                 double z=-((Caster.getZ()-hit.getZ())+1)/(hit.distanceTo(Caster));
-                ParticleShapes.circleShape(world, ParticleTypes.SOUL, x, z, z, Power*3 , 250, 0, true);
-                ParticleShapes.circleShape(world, ParticleTypes.SCULK_SOUL, x, z, z, Power*3 , 250, 0, true);
+                if(!this.world.isClient){
+                  ParticleShapes.burstShape(((ServerWorld)world), ParticleTypes.SCULK_SOUL, Caster.getX(), Caster.getY(), Caster.getZ(), 100, 1, false);
+                  ParticleShapes.burstShape(((ServerWorld)world), ParticleTypes.SOUL, Caster.getX(), Caster.getY(), Caster.getZ(), 100, 1, false);
+                }
                 hit.setVelocity(x, 0.2, z);
                 }
               }
@@ -94,8 +98,10 @@ public class SpellObject{
             case SOUL_TRAP:
             HitResult hitResult = Caster.raycast(20, 0, false);
             ParticleShapes.lineShape(world, ParticleTypes.SCULK_SOUL, Caster.getX(), Caster.getEyeY(), Caster.getZ(), Caster.getPitch(), Caster.getYaw(), 1, hitResult.getPos().distanceTo(Caster.getPos()));
-            ParticleShapes.burstShape(world,  ParticleTypes.SCULK_SOUL, hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z, 1, 50, 0.5, true);
-            ParticleShapes.burstShape(world,  ParticleTypes.ASH, hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z, 0.5, 50, 0.5, true);
+            if(!this.world.isClient){
+              ParticleShapes.burstShape(((ServerWorld)world),  ParticleTypes.SCULK_SOUL, hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z, 50, 0.5, true);
+            ParticleShapes.burstShape(((ServerWorld)world),  ParticleTypes.ASH, hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z, 50, 0.5, true);
+            }
             System.out.println(hitResult);
             if (hitResult.getType() == HitResult.Type.ENTITY) {
               List<Entity> entities = world.getOtherEntities(Caster,  Box.of(hitResult.getPos(), 1, 1, 1));

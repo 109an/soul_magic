@@ -8,6 +8,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -34,9 +35,11 @@ public class SlowAoe {
             int size = 10;
             Box box=new Box(pos.x-size, pos.y-size, pos.z-size, pos.x+size, pos.y+size, pos.z+size);
             List<Entity> enties = world.getOtherEntities(caster, box);
-            ParticleShapes.sphereShape(world, ParticleTypes.ASH, pos.x, pos.y, pos.z, size, 10, 0, false);
-            ParticleShapes.sphereShape(world, ParticleTypes.SCULK_SOUL, pos.x, pos.y, pos.z, size, 10, 0, false);
-            ParticleShapes.sphereShape(world, ParticleTypes.SOUL, pos.x, pos.y, pos.z, size, 10, 0, false);
+            if(!world.isClient){
+            ParticleShapes.sphereShape(((ServerWorld)world), ParticleTypes.ASH, pos.x, pos.y, pos.z, size, 10, false);
+            ParticleShapes.sphereShape(((ServerWorld)world), ParticleTypes.SCULK_SOUL, pos.x, pos.y, pos.z, size, 10, false);
+            ParticleShapes.sphereShape(((ServerWorld)world), ParticleTypes.SOUL, pos.x, pos.y, pos.z, size, 10, false);
+            }
             for (Entity hit : enties) { 
                 if(hit.getPos().distanceTo(pos) <= size){
                     if(hit instanceof LivingEntity){
@@ -44,7 +47,7 @@ public class SlowAoe {
                         ((LivingEntity)hit).addStatusEffect(statusEffectInstance);
                     }
                     else{
-                        hit.setVelocity(hit.getVelocity().normalize());
+                        hit.setVelocity(hit.getVelocity().normalize().multiply(0.6));
                     }
                 }
                 
