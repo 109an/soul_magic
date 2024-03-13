@@ -5,6 +5,7 @@ import java.util.List;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
@@ -42,12 +43,20 @@ public class SlowAoe {
             }
             for (Entity hit : enties) { 
                 if(hit.getPos().distanceTo(pos) <= size){
-                    if(hit instanceof LivingEntity){
-                        StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.SLOWNESS, 60, 10, false, false, false);
-                        ((LivingEntity)hit).addStatusEffect(statusEffectInstance);
+                    if(hit instanceof LivingEntity && caster.getUuid() != hit.getUuid()){
+                        if(((LivingEntity)hit).getAttributeBaseValue(EntityAttributes.GENERIC_MAX_HEALTH) <= 20){
+                            StatusEffectInstance statusEffectInstance3 = new StatusEffectInstance(StatusEffects.SLOWNESS, 1, 3, false, false, false);
+                            ((LivingEntity)hit).addStatusEffect(statusEffectInstance3);
+                        }
+                        if(((LivingEntity)hit).getAttributeBaseValue(EntityAttributes.GENERIC_MAX_HEALTH) <= 50){
+                            StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.SLOWNESS, 1, 1, false, false, false);
+                            ((LivingEntity)hit).addStatusEffect(statusEffectInstance);
+                        }
                     }
                     else{
-                        hit.setVelocity(hit.getVelocity().normalize().multiply(0.6));
+                        if(hit.getVelocity().length() > Vec3d.ZERO.normalize().multiply(0.6).length()){
+                            hit.setVelocity(hit.getVelocity().normalize().multiply(0.6));
+                        }
                     }
                 }
                 

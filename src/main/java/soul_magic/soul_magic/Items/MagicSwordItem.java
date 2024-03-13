@@ -95,7 +95,7 @@ public class MagicSwordItem extends SwordItem implements GeoItem{
             System.out.print(nbtCompound.getInt("time_left"));
             stack.setNbt(nbtCompound);
         }
-        if(stack.getNbt().getInt("time_left") == 0){
+        if(stack.getNbt().getInt("time_left") < 0){
             stack.decrement(1);
         }
       }

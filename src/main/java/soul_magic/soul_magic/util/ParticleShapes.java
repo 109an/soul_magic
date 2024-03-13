@@ -8,7 +8,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import soul_magic.soul_magic.spells.SpellObject;
-public abstract class ParticleShapes{//change world.addparticle to ServerWorld.spawnParticle
+public abstract class ParticleShapes{//change world.addparticle to ServerWorld.spawnParticle, why dis not work
     private static double pi=MathHelper.PI;
     private static Random random = Random.create();
     public static void genericSpellCast(SpellObject spell){
