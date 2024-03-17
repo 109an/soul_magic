@@ -54,7 +54,7 @@ public class SlowAoe {
                             ((LivingEntity)hit).addStatusEffect(statusEffectInstance);
                         }
                     }
-                    else{
+                   else if(hit instanceof ProjectileEntity){
                         if(hit.getVelocity().length() > Vec3d.ZERO.normalize().multiply(0.4).length() && hit instanceof ProjectileEntity){
                             hit.setVelocity(hit.getVelocity().normalize().multiply(0.4));
                         }

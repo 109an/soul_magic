@@ -60,8 +60,8 @@ public class SpellObject{
               Caster.addStatusEffect(lifesteal);
               break;
             case MISTY_STEP:
-              Caster.setVelocity(Vec3d.fromPolar(Caster.getPitch(), Caster.getYaw()).multiply(Power+1).normalize().multiply(Power+1));
-              StatusEffectInstance slowfall = new StatusEffectInstance(StatusEffects.SLOW_FALLING, 20);
+              Caster.setVelocity(Vec3d.fromPolar(Caster.getPitch(), Caster.getYaw()).multiply(Power+1.5).normalize().multiply(Power+1.5));
+              StatusEffectInstance slowfall = new StatusEffectInstance(StatusEffects.SLOW_FALLING, 120);
               Caster.addStatusEffect(slowfall);
             break;
             case SHOCKWAVE:
@@ -89,15 +89,15 @@ public class SpellObject{
             case SUMMON_SWORD:
             if(Caster instanceof PlayerEntity){
               ItemStack itemStack = new ItemStack(Soul_magic.MAGIC_SWORD);
-              ((PlayerEntity)Caster).giveItemStack(itemStack);
               NbtCompound nbt = itemStack.getOrCreateNbt();
-              nbt.putInt("level", Power);
+              nbt.putInt("time_left", 1200*Power);
               itemStack.setNbt(nbt);
+              ((PlayerEntity)Caster).giveItemStack(itemStack);
             }
             break;
             case SOUL_TRAP:
             HitResult hitResult = Caster.raycast(20, 0, false);
-            ParticleShapes.lineShape(world, ParticleTypes.SCULK_SOUL, Caster.getX(), Caster.getEyeY(), Caster.getZ(), Caster.getPitch(), Caster.getYaw(), 1, hitResult.getPos().distanceTo(Caster.getPos()));
+            //ParticleShapes.lineShape(world, ParticleTypes.SCULK_SOUL, Caster.getX(), Caster.getEyeY(), Caster.getZ(), Caster.getPitch(), Caster.getYaw(), 1, hitResult.getPos().distanceTo(Caster.getPos()));
             if(this.world instanceof ServerWorld){
               ParticleShapes.burstShape(((ServerWorld)world),  ParticleTypes.SCULK_SOUL, hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z, 50, 0.5, true);
             ParticleShapes.burstShape(((ServerWorld)world),  ParticleTypes.ASH, hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z, 50, 0.5, true);

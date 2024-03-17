@@ -141,7 +141,7 @@ public class SoulBottle extends Item {
                 num=100;
             }
             if(tier == 3){
-                num=10000;
+                num=1000;
             }
             double ammount=(entity.getAttributeBaseValue(EntityAttributes.GENERIC_MAX_HEALTH))*(entity.getAttributeBaseValue(EntityAttributes.GENERIC_MAX_HEALTH)/num);
             if (soulbottle.hasNbt() && ammount+soulbottle.getNbt().getDouble("fill")<=100){

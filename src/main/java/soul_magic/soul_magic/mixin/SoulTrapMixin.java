@@ -21,10 +21,12 @@ public abstract class SoulTrapMixin{
 		if (damageSource.getAttacker() instanceof PlayerEntity){
 			PlayerEntity player=((PlayerEntity)damageSource.getAttacker());
 			SoulBottle.fill(entity, player);
+			System.out.println("hi");
 		}
 		if (damageSource.isOf(DamageTypes.WITHER)){
 			PlayerEntity player = entity.getWorld().getClosestPlayer(entity, 128);
 			SoulBottle.fill(entity, player);
+			System.out.println("bye");
 		}
      }
 	}

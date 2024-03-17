@@ -8,14 +8,11 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.Item;
-import net.minecraft.item.SwordItem;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import soul_magic.soul_magic.Effects.MultiJumpEffect;
 import soul_magic.soul_magic.Effects.RageEffect;
 import soul_magic.soul_magic.Effects.SoulTrapEffect;
 import soul_magic.soul_magic.Effects.VampirismEffect;
@@ -44,7 +41,6 @@ public class Soul_magic implements ModInitializer
 	public static final StatusEffect VAMPIRISM = new VampirismEffect();
 	public static final StatusEffect SOULTRAP = new SoulTrapEffect();
 	public static final StatusEffect RAGE = new RageEffect();
-	public static final StatusEffect MULTIJUMP = new MultiJumpEffect();
 	public static final DefaultParticleType SPELL_CAST = FabricParticleTypes.simple();
 	public static final EntityType<ArcaneSpellProjectile> ARCANE_SPELL_PROJECTILE = Registry.register (Registries.ENTITY_TYPE, new Identifier("soul_magic", "spellprojectile"), FabricEntityTypeBuilder.<ArcaneSpellProjectile>create(SpawnGroup.MISC, ArcaneSpellProjectile::new).dimensions(EntityDimensions.fixed(0.25F, 0.25F)).trackRangeBlocks(4).trackedUpdateRate(10).build());
 	public static final EntityType<SpellFireball> SPELL_FIREBALL = Registry.register (Registries.ENTITY_TYPE, new Identifier("soul_magic", "spell_fireball"), FabricEntityTypeBuilder.<SpellFireball>create(SpawnGroup.MISC, SpellFireball::new).dimensions(EntityDimensions.fixed(1.0f, 0.5f)).build());
@@ -56,7 +52,6 @@ public class Soul_magic implements ModInitializer
 		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "rage"), RAGE);
 		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "soul_trap"), SOULTRAP);
 		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "vampirism"), VAMPIRISM);
-		Registry.register(Registries.STATUS_EFFECT, new Identifier("soul_magic", "multi_jump"), MULTIJUMP);
 		Registry.register(Registries.ITEM, new Identifier("soul_magic", "wand"), WAND);
 		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_shard"), SOUL_SHARD);
 		Registry.register(Registries.ITEM, new Identifier("soul_magic", "soul_bottle_tier1"), SOUL_BOTTLE_TIER1);

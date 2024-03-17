@@ -69,9 +69,7 @@ public class MagicSwordItem extends SwordItem implements GeoItem{
     }
      public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker){
         if (stack.hasNbt()){
-            NbtCompound nbt = stack.getNbt();
-            int level = nbt.getInt("level");
-            StatusEffectInstance soulTrap = new StatusEffectInstance(Soul_magic.SOULTRAP, 30, level/3);
+            StatusEffectInstance soulTrap = new StatusEffectInstance(Soul_magic.SOULTRAP, 30, 3);
             target.addStatusEffect(soulTrap);
         }
         else{
@@ -84,18 +82,13 @@ public class MagicSwordItem extends SwordItem implements GeoItem{
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected){
         super.inventoryTick(stack, world, entity, slot, selected);
       if(entity instanceof PlayerEntity){
-        if(!stack.hasNbt()){
-            NbtCompound nbtCompound = new NbtCompound();
-            nbtCompound.putInt("time_left", 1200);
-            stack.setNbt(nbtCompound);
-        }
-        else{
+        if(stack.hasNbt()){
             NbtCompound nbtCompound = stack.getNbt();
             nbtCompound.putInt("time_left", nbtCompound.getInt("time_left")-1);
             System.out.print(nbtCompound.getInt("time_left"));
             stack.setNbt(nbtCompound);
         }
-        if(stack.getNbt().getInt("time_left") < 0){
+        if(stack.hasNbt() && stack.getNbt().getInt("time_left") < 0){
             stack.decrement(1);
         }
       }

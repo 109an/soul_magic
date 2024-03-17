@@ -4,12 +4,9 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.util.Identifier;
-import soul_magic.soul_magic.Soul_magic;
 
 public class RageViganette{
     public boolean ShouldRender;
