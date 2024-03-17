@@ -71,7 +71,7 @@ public class SpellObject{
                 hit.damage(hit.getDamageSources().indirectMagic(Caster, Caster), Power*2);
                 double x=-((Caster.getX()-hit.getX())+1)/(hit.distanceTo(Caster));
                 double z=-((Caster.getZ()-hit.getZ())+1)/(hit.distanceTo(Caster));
-                if(!this.world.isClient){
+                if(this.world instanceof ServerWorld){
                   ParticleShapes.burstShape(((ServerWorld)world), ParticleTypes.SCULK_SOUL, Caster.getX(), Caster.getY(), Caster.getZ(), 100, 1, false);
                   ParticleShapes.burstShape(((ServerWorld)world), ParticleTypes.SOUL, Caster.getX(), Caster.getY(), Caster.getZ(), 100, 1, false);
                 }
@@ -98,7 +98,7 @@ public class SpellObject{
             case SOUL_TRAP:
             HitResult hitResult = Caster.raycast(20, 0, false);
             ParticleShapes.lineShape(world, ParticleTypes.SCULK_SOUL, Caster.getX(), Caster.getEyeY(), Caster.getZ(), Caster.getPitch(), Caster.getYaw(), 1, hitResult.getPos().distanceTo(Caster.getPos()));
-            if(!this.world.isClient){
+            if(this.world instanceof ServerWorld){
               ParticleShapes.burstShape(((ServerWorld)world),  ParticleTypes.SCULK_SOUL, hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z, 50, 0.5, true);
             ParticleShapes.burstShape(((ServerWorld)world),  ParticleTypes.ASH, hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z, 50, 0.5, true);
             }

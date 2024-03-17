@@ -17,6 +17,6 @@ public class SpellFireballEntityModel extends GeoModel<SpellFireball> {
 
     @Override
     public Identifier getAnimationResource(SpellFireball animatable) {
-        return new Identifier("soul_magic", "animations/fireball_spin_animation.json");
+        return new Identifier("soul_magic", "animations/spell_fireball.animation.json");
     }
 }

@@ -115,7 +115,7 @@ public class SoulBottle extends Item {
                 hit.damage(hit.getDamageSources().magic(), (int)(damage));
             }
         }
-        if(!world.isClient){
+        if(world instanceof ServerWorld){
             ParticleShapes.sphereShape(((ServerWorld)world), ParticleTypes.SCULK_SOUL, entity.getX(), entity.getY(), entity.getZ(), ((int)size), ((int)(size*100)), true);
             ParticleShapes.burstShape(((ServerWorld)world), ParticleTypes.SOUL, entity.getX(), entity.getEyeY(), entity.getZ(), ((int)(size*100)), 1, true);
         }

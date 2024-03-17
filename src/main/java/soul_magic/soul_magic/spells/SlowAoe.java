@@ -8,6 +8,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Box;
@@ -36,7 +37,7 @@ public class SlowAoe {
             int size = 10;
             Box box=new Box(pos.x-size, pos.y-size, pos.z-size, pos.x+size, pos.y+size, pos.z+size);
             List<Entity> enties = world.getOtherEntities(caster, box);
-            if(!world.isClient){
+            if(world instanceof ServerWorld){
             ParticleShapes.sphereShape(((ServerWorld)world), ParticleTypes.ASH, pos.x, pos.y, pos.z, size, 10, false);
             ParticleShapes.sphereShape(((ServerWorld)world), ParticleTypes.SCULK_SOUL, pos.x, pos.y, pos.z, size, 10, false);
             ParticleShapes.sphereShape(((ServerWorld)world), ParticleTypes.SOUL, pos.x, pos.y, pos.z, size, 10, false);
@@ -54,8 +55,8 @@ public class SlowAoe {
                         }
                     }
                     else{
-                        if(hit.getVelocity().length() > Vec3d.ZERO.normalize().multiply(0.6).length()){
-                            hit.setVelocity(hit.getVelocity().normalize().multiply(0.6));
+                        if(hit.getVelocity().length() > Vec3d.ZERO.normalize().multiply(0.4).length() && hit instanceof ProjectileEntity){
+                            hit.setVelocity(hit.getVelocity().normalize().multiply(0.4));
                         }
                     }
                 }

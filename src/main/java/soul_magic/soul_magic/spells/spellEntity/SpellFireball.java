@@ -1,8 +1,11 @@
 package soul_magic.soul_magic.spells.spellEntity;
 
+import net.minecraft.block.SoulFireBlock;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.projectile.ExplosiveProjectileEntity;
 import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.World.ExplosionSourceType;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -15,12 +18,20 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class SpellFireball extends ProjectileEntity implements GeoEntity{
-    //TODO the uv mappings for this dont seem to be working, also it never moves or rotates
+public class SpellFireball extends ExplosiveProjectileEntity implements GeoEntity{
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     protected static final RawAnimation SPIN = RawAnimation.begin().thenLoop("spin");
-     public SpellFireball(EntityType<? extends ProjectileEntity> entityType, World world) {
+    public SpellFireball(EntityType<? extends ExplosiveProjectileEntity> entityType, World world) {
         super(entityType, world);
+    }
+    public SpellFireball(EntityType<? extends ExplosiveProjectileEntity> type, double x, double y, double z, double directionX, double directionY, double directionZ, World world) {
+        super(type, x, y, z, directionX, directionY, directionZ, world);
+    }
+    public SpellFireball(EntityType<? extends ExplosiveProjectileEntity> type, LivingEntity owner, double directionX, double directionY, double directionZ, World world) {
+        super(type, owner, directionX, directionY, directionZ, world);
+    }
+    public SpellFireball(EntityType<? extends ExplosiveProjectileEntity> type, LivingEntity owner,  World world) {
+        super(type, owner, Vec3d.fromPolar(owner.getPitch(), owner.getYaw()).x, Vec3d.fromPolar(owner.getPitch(), owner.getYaw()).y, Vec3d.fromPolar(owner.getPitch(), owner.getYaw()).z, world);
     }
     protected void initDataTracker() {
     }
@@ -31,11 +42,6 @@ public class SpellFireball extends ProjectileEntity implements GeoEntity{
     }
     @Override
     public void tick(){
-        super.tick();
-        if(this.distanceTraveled>50){
-            this.world.createExplosion( this.getOwner(), this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 0.5f, true, ExplosionSourceType.BLOCK);
-            this.kill(); 
-        }
     }
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
@@ -49,5 +55,11 @@ public class SpellFireball extends ProjectileEntity implements GeoEntity{
     public void registerControllers(final AnimatableManager.ControllerRegistrar controllers) {
        controllers.add(new AnimationController<>(this, this::predicate));
     }
-
+    public void explode(World world, int power){
+        world.createExplosion(getOwner(), this.getX(), this.getY(), this.getZ(), power, ExplosionSourceType.BLOCK);
+        HitResult hitResult = this.raycast(power, power, false);
+        if(hitResult.getType() == HitResult.Type.BLOCK){
+            //world.setBlockState(hitResult.getPos(), SoulFireBlock.getState(world, lastNetherPortalPosition))
+        }
+    }
 }
