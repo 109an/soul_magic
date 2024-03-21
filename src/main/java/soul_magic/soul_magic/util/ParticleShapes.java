@@ -23,7 +23,9 @@ public abstract class ParticleShapes{//change world.addparticle to ServerWorld.s
         double randangel1 = MathHelper.nextDouble(random, -365, 365);
         double randangel2 = MathHelper.nextDouble(random, -365, 365);
         double randangel3 = MathHelper.nextDouble(random, -365, 365);
-        spawnForcedParticles(world, particle, centerx, centery, centerz, randangel1, randangel2, randangel3, energy);
+        for(int i=0; i<count; i++) {
+          spawnForcedParticles(world, particle, centerx, centery, centerz, randangel1, randangel3, randangel2, energy);
+        }
       }
       else{
         double randangel1 = MathHelper.nextDouble(random, -365, 365);
@@ -46,7 +48,7 @@ public abstract class ParticleShapes{//change world.addparticle to ServerWorld.s
              x+=(Math.sin(Pitch)*Math.cos(Yaw))*density;
              z+=(Math.sin(Pitch)*Math.sin(Yaw))*density;
              y+=(Math.cos(Pitch))*density;
-             world.spawnParticles(particle, x, y, z, 1, 0, 0, 0, 0);
+             spawnForcedParticles(world, particle, x, y, z, 0, 0, 0, 0);
         }
     }
   public static void sphereShape(ServerWorld world, ParticleEffect particle,double centerx,double centery, double centerz, double radius, int count, boolean filled){
@@ -58,7 +60,7 @@ public abstract class ParticleShapes{//change world.addparticle to ServerWorld.s
         double x=randdist*(Math.sin(phi)*Math.cos(theta));
         double y=randdist*(Math.sin(phi)*Math.sin(theta));
         double z=randdist*(Math.cos(phi));
-        world.spawnParticles(particle, x+centerx, y+centery, z+centerz, 1, 0, 0, 0, 0);
+        spawnForcedParticles(world, particle, x+centerx, y+centery, z+centerz, 0, 0, 0, 0);
 
       }
     }
@@ -69,20 +71,16 @@ public abstract class ParticleShapes{//change world.addparticle to ServerWorld.s
       double x=radius*(Math.sin(phi)*Math.cos(theta));
       double y=radius*(Math.sin(phi)*Math.sin(theta));
       double z=radius*(Math.cos(phi));
-      world.spawnParticles(particle, x+centerx, y+centery, z+centerz, 1, 0, 0, 0, 0);
+      spawnForcedParticles(world, particle, x+centerx, y+centery, z+centerz, 0, 0, 0, 0);
       }
      
     }
    }
    private static void spawnForcedParticles(ServerWorld world, ParticleEffect particle, double x, double y, double z, double deltaX, double deltaY, double deltaZ, double speed){
     ParticleS2CPacket particleS2CPacket = new ParticleS2CPacket(particle, false, x, y, z, (float)deltaX, (float)deltaY, (float)deltaZ, (float)speed, 1);
-
-        for(int j = 0; j < world.getPlayers().size(); ++j) {
-          ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)world.getPlayers().get(j);
-          if (world.sendToPlayerIfNearby(serverPlayerEntity, true, x, y, z, particleS2CPacket)) {
-              ++i;
-          }
-        }
+    for (ServerPlayerEntity player : world.getPlayers()) {
+      world.sendToPlayerIfNearby(player, true, x, y, z, particleS2CPacket);
+    }
    }
 }
 

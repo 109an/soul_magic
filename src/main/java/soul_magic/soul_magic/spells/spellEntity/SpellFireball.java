@@ -29,9 +29,11 @@ public class SpellFireball extends ExplosiveProjectileEntity implements GeoEntit
     }
     public SpellFireball(EntityType<? extends ExplosiveProjectileEntity> type, LivingEntity owner, double directionX, double directionY, double directionZ, World world) {
         super(type, owner, directionX, directionY, directionZ, world);
+        
     }
     public SpellFireball(EntityType<? extends ExplosiveProjectileEntity> type, LivingEntity owner,  World world) {
         super(type, owner, Vec3d.fromPolar(owner.getPitch(), owner.getYaw()).x, Vec3d.fromPolar(owner.getPitch(), owner.getYaw()).y, Vec3d.fromPolar(owner.getPitch(), owner.getYaw()).z, world);
+        this.setRotation(owner.getYaw(), owner.getPitch());
     }
     protected void initDataTracker() {
     }
@@ -41,7 +43,12 @@ public class SpellFireball extends ExplosiveProjectileEntity implements GeoEntit
      this.kill();
     }
     @Override
+    protected boolean isBurning() {
+        return false;
+    }
+    @Override
     public void tick(){
+        super.tick();
     }
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {

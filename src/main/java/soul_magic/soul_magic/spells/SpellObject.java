@@ -1,6 +1,8 @@
 package soul_magic.soul_magic.spells;
 import java.util.List;
 
+import net.minecraft.block.SculkBlock;
+import net.minecraft.block.TntBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -12,17 +14,18 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import soul_magic.soul_magic.Soul_magic;
 import soul_magic.soul_magic.util.Aoe;
 import soul_magic.soul_magic.util.ParticleShapes;
 public class SpellObject{
-    //TODO make "save or suck" spells that dont effect entities with higher hp
-    //model spells after dnd spells (9 levels of spells, each level takes more soul to cast)
-    //change level in the enum to minlevel and allow for upcsting like in dnd
+    //make "save or suck" spells that dont effect entities with higher hp
     //leaan into the soul theme by  making all spells dark or soul fire
+    //TODO fix the soulbottle fill method, fix the rotation of the fireball entity, use a model predicate provider for the spellscrolls, add 
     public int Power;
     public Spell Spelltocast;
     public World world;
@@ -46,10 +49,8 @@ public class SpellObject{
         Soul_magic.LOGGER.error("no such Spell found");
       }
     public void castSpell(){
+      SpellResult spellResult = new SpellResult();
       if (Spelltocast.minpower<=Power){
-
-        Caster.playSound(SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, 1, 1);
-
         ParticleShapes.genericSpellCast(this);
           switch (Spelltocast) {
             case MAGIC_MISSLE:
@@ -66,15 +67,15 @@ public class SpellObject{
             break;
             case SHOCKWAVE:
               Caster.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1f, 1f);
+              if(this.world instanceof ServerWorld){
+                ParticleShapes.burstShape(((ServerWorld)world), ParticleTypes.SCULK_SOUL, Caster.getX(), Caster.getY(), Caster.getZ(), 100, 1, false);
+                ParticleShapes.burstShape(((ServerWorld)world), ParticleTypes.SOUL, Caster.getX(), Caster.getY(), Caster.getZ(), 100, 1, false);
+              }
               for (Entity hit : Aoe.getAll(world, Caster, Caster.getX(), Caster.getY(), Caster.getZ(), Power*3)) {
                 if(hit.getY()==Caster.getY() || hit.getY()==Caster.getY()+1 || hit.getY()==Caster.getY()-1){
                 hit.damage(hit.getDamageSources().indirectMagic(Caster, Caster), Power*2);
                 double x=-((Caster.getX()-hit.getX())+1)/(hit.distanceTo(Caster));
                 double z=-((Caster.getZ()-hit.getZ())+1)/(hit.distanceTo(Caster));
-                if(this.world instanceof ServerWorld){
-                  ParticleShapes.burstShape(((ServerWorld)world), ParticleTypes.SCULK_SOUL, Caster.getX(), Caster.getY(), Caster.getZ(), 100, 1, false);
-                  ParticleShapes.burstShape(((ServerWorld)world), ParticleTypes.SOUL, Caster.getX(), Caster.getY(), Caster.getZ(), 100, 1, false);
-                }
                 hit.setVelocity(x, 0.2, z);
                 }
               }
@@ -96,22 +97,10 @@ public class SpellObject{
             }
             break;
             case SOUL_TRAP:
-            HitResult hitResult = Caster.raycast(20, 0, false);
-            //ParticleShapes.lineShape(world, ParticleTypes.SCULK_SOUL, Caster.getX(), Caster.getEyeY(), Caster.getZ(), Caster.getPitch(), Caster.getYaw(), 1, hitResult.getPos().distanceTo(Caster.getPos()));
-            if(this.world instanceof ServerWorld){
-              ParticleShapes.burstShape(((ServerWorld)world),  ParticleTypes.SCULK_SOUL, hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z, 50, 0.5, true);
-            ParticleShapes.burstShape(((ServerWorld)world),  ParticleTypes.ASH, hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z, 50, 0.5, true);
-            }
-            System.out.println(hitResult);
-            if (hitResult.getType() == HitResult.Type.ENTITY) {
-              List<Entity> entities = world.getOtherEntities(Caster,  Box.of(hitResult.getPos(), 1, 1, 1));
-              for (Entity hit : entities) {
-                if(hit instanceof LivingEntity){
-                  StatusEffectInstance statusEffectInstance = new StatusEffectInstance(Soul_magic.SOULTRAP, Power*10, Power+1);
-                  ((LivingEntity)hit).addStatusEffect(statusEffectInstance);
-                }
-              }
-            }
+            ArcaneSpellProjectile arcaneSpellProjectile = new ArcaneSpellProjectile(world, Caster, Power);
+            arcaneSpellProjectile.setVelocity(Caster, Caster.getPitch(), Caster.getYaw(), Caster.getRoll(), 1f, 0.3f);
+            arcaneSpellProjectile.setNoGravity(true);
+            world.spawnEntity(arcaneSpellProjectile);
             default:
               break;
           }
