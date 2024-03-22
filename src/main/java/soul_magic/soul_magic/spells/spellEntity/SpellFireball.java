@@ -1,6 +1,4 @@
 package soul_magic.soul_magic.spells.spellEntity;
-
-import net.minecraft.block.SoulFireBlock;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ExplosiveProjectileEntity;
@@ -39,7 +37,7 @@ public class SpellFireball extends ExplosiveProjectileEntity implements GeoEntit
     }
     @Override
     public void onCollision(HitResult hitResult) {
-     this.world.createExplosion( this.getOwner(), hitResult.getPos().getX(), hitResult.getPos().getY(), hitResult.getPos().getZ(), 0.5f, true, ExplosionSourceType.BLOCK);
+     this.world.createExplosion( this.getOwner(), hitResult.getPos().getX(), hitResult.getPos().getY(), hitResult.getPos().getZ(), 50, true, ExplosionSourceType.BLOCK);
      this.kill();
     }
     @Override

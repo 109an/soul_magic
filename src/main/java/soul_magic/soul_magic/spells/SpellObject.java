@@ -1,8 +1,5 @@
 package soul_magic.soul_magic.spells;
-import java.util.List;
 
-import net.minecraft.block.SculkBlock;
-import net.minecraft.block.TntBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -13,11 +10,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import soul_magic.soul_magic.Soul_magic;
 import soul_magic.soul_magic.util.Aoe;
@@ -25,7 +18,7 @@ import soul_magic.soul_magic.util.ParticleShapes;
 public class SpellObject{
     //make "save or suck" spells that dont effect entities with higher hp
     //leaan into the soul theme by  making all spells dark or soul fire
-    //TODO fix the soulbottle fill method, fix the rotation of the fireball entity, use a model predicate provider for the spellscrolls, add 
+    //TODO fix the soulbottle fill method, fix the rotation of the fireball entity, use a model predicate provider for the spellscrolls, add more spells
     public int Power;
     public Spell Spelltocast;
     public World world;
@@ -49,12 +42,13 @@ public class SpellObject{
         Soul_magic.LOGGER.error("no such Spell found");
       }
     public void castSpell(){
-      SpellResult spellResult = new SpellResult();
       if (Spelltocast.minpower<=Power){
         ParticleShapes.genericSpellCast(this);
           switch (Spelltocast) {
             case MAGIC_MISSLE:
-            //homing projectile
+            MagicMissleProjectile magicMissleProjectile = new MagicMissleProjectile(world, Caster, Power);
+            magicMissleProjectile.setVelocity(Caster, Caster.getPitch(), Caster.getYaw(), Caster.getRoll(), 0.25f, 0.3f);
+            world.spawnEntity(magicMissleProjectile);
               break;
             case LIFESTEAL:
               StatusEffectInstance lifesteal=new StatusEffectInstance(Soul_magic.VAMPIRISM, 120, this.Power-2, false, false, false);
@@ -68,8 +62,8 @@ public class SpellObject{
             case SHOCKWAVE:
               Caster.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1f, 1f);
               if(this.world instanceof ServerWorld){
-                ParticleShapes.burstShape(((ServerWorld)world), ParticleTypes.SCULK_SOUL, Caster.getX(), Caster.getY(), Caster.getZ(), 100, 1, false);
-                ParticleShapes.burstShape(((ServerWorld)world), ParticleTypes.SOUL, Caster.getX(), Caster.getY(), Caster.getZ(), 100, 1, false);
+                ParticleShapes.burstShape(((ServerWorld)world), ParticleTypes.SCULK_SOUL, Caster.getX(), Caster.getY(), Caster.getZ(), 150, 0.6, false);
+                ParticleShapes.burstShape(((ServerWorld)world), ParticleTypes.SOUL, Caster.getX(), Caster.getY(), Caster.getZ(), 150, 0.6, false);
               }
               for (Entity hit : Aoe.getAll(world, Caster, Caster.getX(), Caster.getY(), Caster.getZ(), Power*3)) {
                 if(hit.getY()==Caster.getY() || hit.getY()==Caster.getY()+1 || hit.getY()==Caster.getY()-1){
@@ -97,10 +91,10 @@ public class SpellObject{
             }
             break;
             case SOUL_TRAP:
-            ArcaneSpellProjectile arcaneSpellProjectile = new ArcaneSpellProjectile(world, Caster, Power);
-            arcaneSpellProjectile.setVelocity(Caster, Caster.getPitch(), Caster.getYaw(), Caster.getRoll(), 1f, 0.3f);
-            arcaneSpellProjectile.setNoGravity(true);
-            world.spawnEntity(arcaneSpellProjectile);
+            SoulTrapProjectile SoulTrapProjectile = new  SoulTrapProjectile(world, Caster, Power);
+            SoulTrapProjectile.setVelocity(Caster, Caster.getPitch(), Caster.getYaw(), Caster.getRoll(), 0.25f, 0.3f);
+            SoulTrapProjectile.setNoGravity(true);
+            world.spawnEntity(SoulTrapProjectile);
             default:
               break;
           }

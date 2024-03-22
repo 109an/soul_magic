@@ -22,7 +22,7 @@ public class Soul_magicClient implements ClientModInitializer {
 	private static KeyBinding keyBinding;
 	@Override
 	public void onInitializeClient() {
-	EntityRendererRegistry.register(Soul_magic.ARCANE_SPELL_PROJECTILE, FlyingItemEntityRenderer::new);
+	EntityRendererRegistry.register(Soul_magic.SOUL_TRAP_PROJECTILE, FlyingItemEntityRenderer::new);
 		EntityRendererRegistry.register(Soul_magic.SPELL_FIREBALL, SpellFireballEntityRender::new);
 		ParticleFactoryRegistry.getInstance().register(Soul_magic.SPELL_CAST, EnchantGlyphParticle.EnchantFactory::new);
 		 MinecraftClient minecraftClient = MinecraftClient.getInstance();

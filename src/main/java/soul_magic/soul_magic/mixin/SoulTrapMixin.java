@@ -2,8 +2,6 @@ package soul_magic.soul_magic.mixin;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageType;
-import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import soul_magic.soul_magic.Soul_magic;
 import soul_magic.soul_magic.Items.SoulBottle;

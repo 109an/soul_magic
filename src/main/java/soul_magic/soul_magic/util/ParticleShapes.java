@@ -1,15 +1,12 @@
 package soul_magic.soul_magic.util;
-
-import net.minecraft.network.packet.s2c.play.ParticleS2CPacket;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import soul_magic.soul_magic.spells.SpellObject;
-public abstract class ParticleShapes{//change world.addparticle to ServerWorld.spawnParticle, why dis not work
+public abstract class ParticleShapes{
     private static double pi=MathHelper.PI;
     private static Random random = Random.create();
     public static void genericSpellCast(SpellObject spell){
@@ -20,18 +17,18 @@ public abstract class ParticleShapes{//change world.addparticle to ServerWorld.s
     }
     public static void burstShape(ServerWorld world, ParticleEffect particle, double centerx, double centery, double centerz, int count, double energy, boolean height){
       if(height){
-        double randangel1 = MathHelper.nextDouble(random, -365, 365);
-        double randangel2 = MathHelper.nextDouble(random, -365, 365);
-        double randangel3 = MathHelper.nextDouble(random, -365, 365);
+        double randangel1 = MathHelper.nextDouble(random, -360, 360);
+        double randangel2 = MathHelper.nextDouble(random, -360, 360);
+        double randangel3 = MathHelper.nextDouble(random, -360, 360);
         for(int i=0; i<count; i++) {
           spawnForcedParticles(world, particle, centerx, centery, centerz, randangel1, randangel3, randangel2, energy);
         }
       }
       else{
-        double randangel1 = MathHelper.nextDouble(random, -365, 365);
-        double randangel2 = MathHelper.nextDouble(random, -365, 365);
+        double randangel1 = MathHelper.nextDouble(random, -360, 360);
+        double randangel2 = MathHelper.nextDouble(random, -360, 360);
         for(int i=0; i<count; i++) {
-        spawnForcedParticles(world, particle, centerx, centery, centerz, randangel1, 0, randangel2, energy);
+        spawnForcedParticles(world, particle, centerx, centery, centerz, randangel1, 90, randangel2, energy);
         }
       }
     }
@@ -77,10 +74,7 @@ public abstract class ParticleShapes{//change world.addparticle to ServerWorld.s
     }
    }
    private static void spawnForcedParticles(ServerWorld world, ParticleEffect particle, double x, double y, double z, double deltaX, double deltaY, double deltaZ, double speed){
-    ParticleS2CPacket particleS2CPacket = new ParticleS2CPacket(particle, false, x, y, z, (float)deltaX, (float)deltaY, (float)deltaZ, (float)speed, 1);
-    for (ServerPlayerEntity player : world.getPlayers()) {
-      world.sendToPlayerIfNearby(player, true, x, y, z, particleS2CPacket);
-    }
+      world.getPlayers(player->player.getBlockPos().isWithinDistance(player.getPos(), 32)).forEach(player-> world.spawnParticles(player, particle, true, x, y, z, 1, deltaX, deltaY, deltaZ, speed));
    }
 }
 

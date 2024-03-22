@@ -31,9 +31,12 @@ public class wand extends Item{
         if(playerEntity.getOffHandStack().getItem() == Items.SOUL_TORCH)
         { SpellObject spellObject=new SpellObject(world, playerEntity, Spell.SOUL_TRAP, 3);
             spellObject.castSpell();}
-            if(playerEntity.getOffHandStack().getItem() == Items.TNT)
-            { SpellObject spellObject=new SpellObject(world, playerEntity, Spell.SHOCKWAVE, 3);
-                spellObject.castSpell();}
+        if(playerEntity.getOffHandStack().getItem() == Items.TNT)
+        { SpellObject spellObject=new SpellObject(world, playerEntity, Spell.SHOCKWAVE, 3);
+            spellObject.castSpell();}
+        if(playerEntity.getOffHandStack().getItem() == Items.STONE)
+        { SpellObject spellObject=new SpellObject(world, playerEntity, Spell.MAGIC_MISSLE, 3);
+            spellObject.castSpell();}
         return TypedActionResult.success(playerEntity.getStackInHand(hand)); 
     }
 }
