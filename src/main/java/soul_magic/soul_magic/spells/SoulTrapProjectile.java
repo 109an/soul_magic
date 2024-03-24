@@ -8,24 +8,31 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
+import net.minecraft.entity.projectile.ExplosiveProjectileEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
-public class SoulTrapProjectile extends AbstractSpellProjectile{
-	public SoulTrapProjectile(EntityType<? extends ThrownItemEntity> entityType, World world) {
+public class SoulTrapProjectile extends ExplosiveProjectileEntity {
+    LivingEntity target;
+    int power;
+    public SoulTrapProjectile(EntityType<? extends ExplosiveProjectileEntity> entityType, World world) {
 		super(entityType, world);
 	}
-	public SoulTrapProjectile(World world, LivingEntity owner, int power) {
-		super(world, Soul_magic.SOUL_TRAP_PROJECTILE, owner, power); 
+	public SoulTrapProjectile(World world, LivingEntity owner, int x, int y, int z, int dx, int dy, int dz, int power) {
+		super(null, x, y, z, dx, dy, dz, world);
 		this.power = power;
 	}
  
-	public SoulTrapProjectile(World world, double x, double y, double z, int power) {
-		super(world, Soul_magic.SOUL_TRAP_PROJECTILE, x, y, z, power); 
+	public SoulTrapProjectile(World world, LivingEntity owner,  double dx, double dy, double dz, int power) {
+		super(null, owner , dx, dy, dz, world);
+		this.power = power;
+	}
+	 public SoulTrapProjectile(World world, LivingEntity owner,  double pitch, double yaw, int power) {
+		super(null, owner , Vec3d.fromPolar(((float)pitch), ((float)yaw)).x, Vec3d.fromPolar(((float)pitch), ((float)yaw)).y, Vec3d.fromPolar(((float)pitch), ((float)yaw)).z, world);
 		this.power = power;
 	}
 	@Override

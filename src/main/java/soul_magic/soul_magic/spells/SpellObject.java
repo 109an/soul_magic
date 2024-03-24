@@ -46,8 +46,8 @@ public class SpellObject{
         ParticleShapes.genericSpellCast(this);
           switch (Spelltocast) {
             case MAGIC_MISSLE:
-            MagicMissleProjectile magicMissleProjectile = new MagicMissleProjectile(world, Caster, Power);
-            magicMissleProjectile.setVelocity(Caster, Caster.getPitch(), Caster.getYaw(), Caster.getRoll(), 0.25f, 0.3f);
+            MagicMissleProjectile magicMissleProjectile = new MagicMissleProjectile(world, Caster, Caster.getPitch(), Caster.getYaw(), Power);
+            magicMissleProjectile.setVelocity(Caster, Caster.getPitch(), Caster.getYaw(), Caster.getRoll(), 0.01f, 0.3f);
             world.spawnEntity(magicMissleProjectile);
               break;
             case LIFESTEAL:
@@ -91,7 +91,7 @@ public class SpellObject{
             }
             break;
             case SOUL_TRAP:
-            SoulTrapProjectile SoulTrapProjectile = new  SoulTrapProjectile(world, Caster, Power);
+            SoulTrapProjectile SoulTrapProjectile = new  SoulTrapProjectile(world, Caster, Caster.getPitch(), Caster.getYaw(), Power);
             SoulTrapProjectile.setVelocity(Caster, Caster.getPitch(), Caster.getYaw(), Caster.getRoll(), 0.25f, 0.3f);
             SoulTrapProjectile.setNoGravity(true);
             world.spawnEntity(SoulTrapProjectile);

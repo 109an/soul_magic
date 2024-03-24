@@ -7,25 +7,31 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.TargetPredicate;
+import net.minecraft.entity.projectile.ExplosiveProjectileEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import soul_magic.soul_magic.Soul_magic;
+//TODO delete abstractspell proj and make this extend explosive proj entity
 
-public class MagicMissleProjectile extends AbstractSpellProjectile {
+public class MagicMissleProjectile extends ExplosiveProjectileEntity {
     LivingEntity target;
-    public MagicMissleProjectile(EntityType<? extends ThrownItemEntity> entityType, World world) {
+    int power;
+    public MagicMissleProjectile(EntityType<? extends ExplosiveProjectileEntity> entityType, World world) {
 		super(entityType, world);
 	}
-	public MagicMissleProjectile(World world, LivingEntity owner, int power) {
-		super(world, Soul_magic.SOUL_TRAP_PROJECTILE, owner, power); 
+	public MagicMissleProjectile(World world, LivingEntity owner, int x, int y, int z, int dx, int dy, int dz, int power) {
+		super(null, x, y, z, dx, dy, dz, world);
 		this.power = power;
 	}
  
-	public MagicMissleProjectile(World world, double x, double y, double z, int power) {
-		super(world, Soul_magic.SOUL_TRAP_PROJECTILE, x, y, z, power); 
+	public MagicMissleProjectile(World world, LivingEntity owner,  double dx, double dy, double dz, int power) {
+		super(null, owner , dx, dy, dz, world);
+		this.power = power;
+	}
+    public MagicMissleProjectile(World world, LivingEntity owner,  double pitch, double yaw, int power) {
+		super(null, owner , Vec3d.fromPolar(((float)pitch), ((float)yaw)).x, Vec3d.fromPolar(((float)pitch), ((float)yaw)).y, Vec3d.fromPolar(((float)pitch), ((float)yaw)).z, world);
 		this.power = power;
 	}
     @Override
@@ -43,33 +49,24 @@ public class MagicMissleProjectile extends AbstractSpellProjectile {
 				target = world.getClosestEntity(living, TargetPredicate.DEFAULT, null, this.getX(), this.getY(), this.getZ());	
 			}
 			if(target != null){
-                //TODO remember, minecraft uses degrees, and the Math lib uses radians, you need to convert here
-				double relx = target.getX() - this.getX();//0, 0, 0 at this
-				double rely = target.getY() - this.getY();
-				double relz = target.getZ() - this.getZ();
-                Vec3d veloc = this.getVelocity();
-                double thetaVeloc = Math.atan(veloc.y/veloc.x);
-                double phiVeloc = Math.sqrt(Math.pow(veloc.x, 2) + Math.pow(veloc.y, 2))/veloc.z;
-                double thetaBet = Math.atan(rely/relx);
-                double phiBet = Math.sqrt(Math.pow(relx, 2) + Math.pow(rely, 2))/relz;
-                if(thetaBet > thetaVeloc){
-                    thetaVeloc ++;
+                if(target.getX() > this.getX()){
+                   this.powerX ++;
                 }
-                else if(thetaBet < thetaVeloc){
-                    thetaVeloc --;
+                if(target.getX() < this.getX()){
+                    this.powerX --;
                 }
-                if(phiBet > phiVeloc){
-                    phiVeloc ++;
+                if(target.getY() > this.getY()){
+                   this.powerY++;
                 }
-                else if(phiBet < phiVeloc ){
-                    phiVeloc --;
+                if(target.getY() < this.getY()){
+                   this.powerY--;
                 }
-                double length = veloc.length();
-                double nx = length*Math.sin(phiVeloc)*Math.cos(thetaVeloc);
-                double ny = length*Math.sin(phiVeloc)*Math.sin(thetaVeloc);
-                double nz = length*Math.cos(phiVeloc);
-                Vec3d nveloc = new Vec3d(nx, ny, nz);
-                this.setVelocity(nveloc);
+                if(target.getZ() > this.getZ()){
+                   this.powerZ++;
+                }
+                if(target.getZ() < this.getZ()){
+                   this.powerZ--;
+                }
 			}
         }
     }
@@ -79,7 +76,7 @@ public class MagicMissleProjectile extends AbstractSpellProjectile {
         if(entityHitResult.getEntity() instanceof LivingEntity){
             LivingEntity entity = ((LivingEntity)entityHitResult.getEntity());
             entity.damage(entity.getDamageSources().indirectMagic(this.getOwner(), this.getOwner()), this.power*2);
-            //entity.takeKnockback(lastRenderX, FALL_FLYING_FLAG_INDEX, DEFAULT_MIN_FREEZE_DAMAGE_TICKS);
+            entity.takeKnockback(power, this.getVelocity().negate().x, this.getVelocity().negate().y);
         }
     }
 }
