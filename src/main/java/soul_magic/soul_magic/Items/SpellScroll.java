@@ -7,20 +7,17 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import soul_magic.soul_magic.Soul_magic;
-import soul_magic.soul_magic.spells.SpellObject;
 import soul_magic.soul_magic.spells.spellEntity.SpellFireball;
 
-public class SpellItem extends Item{
-    public SpellItem(Settings settings){
+public class SpellScroll extends Item{
+    public SpellScroll(Settings settings){
         super(settings);
     }
     @Override
     public TypedActionResult<ItemStack> use (World world, PlayerEntity playerEntity, Hand hand){
         ItemStack stack = playerEntity.getStackInHand(hand);
         if(stack.hasNbt()){
-            SpellObject spell = new SpellObject(world, playerEntity, stack.getNbt().getString("name"), stack.getNbt().getInt("power"));
-            playerEntity.getItemCooldownManager().set(Soul_magic.SPELL_ITEM, spell.Spelltocast.cooldown);
-           spell.castSpell();
+           
         }
        SpellFireball spellFireball = new SpellFireball(Soul_magic.SPELL_FIREBALL, playerEntity, world);
         world.spawnEntity(spellFireball);

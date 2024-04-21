@@ -1,18 +1,21 @@
 package soul_magic.soul_magic.util;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
-import soul_magic.soul_magic.spells.SpellObject;
+import net.minecraft.world.World;
+import soul_magic.soul_magic.spells.Spells;
+import soul_magic.soul_magic.spells.Spells.Spell;
 public abstract class ParticleShapes{
     private static double pi=MathHelper.PI;
     private static Random random = Random.create();
-    public static void genericSpellCast(SpellObject spell){
-      if(spell.world instanceof ServerWorld){
-        ParticleShapes.sphereShape(((ServerWorld)spell.world), ParticleTypes.SMOKE, spell.Caster.getX(), spell.Caster.getY(), spell.Caster.getZ(), 2, 50, true);
-        ParticleShapes.sphereShape(((ServerWorld)spell.world), ParticleTypes.SOUL, spell.Caster.getX(), spell.Caster.getY(), spell.Caster.getZ(), 2, 50, true);
+    public static void genericSpellCast(World world, Spell spell, PlayerEntity caster){
+      if(world instanceof ServerWorld){
+        ParticleShapes.sphereShape(((ServerWorld) world), ParticleTypes.SMOKE, caster.getX(), caster.getY(), caster.getZ(), 2, 50, true);
+        ParticleShapes.sphereShape(((ServerWorld) world), ParticleTypes.SOUL, caster.getX(), caster.getY(), caster.getZ(), 2, 50, true);
       }
     }
     public static void burstShape(ServerWorld world, ParticleEffect particle, double centerx, double centery, double centerz, int count, double energy, boolean height){

@@ -1,4 +1,4 @@
-package soul_magic.soul_magic.spells;
+package soul_magic.soul_magic.spells.spellEntity;
 import net.minecraft.world.World;
 import soul_magic.soul_magic.Soul_magic;
 import soul_magic.soul_magic.util.ParticleShapes;

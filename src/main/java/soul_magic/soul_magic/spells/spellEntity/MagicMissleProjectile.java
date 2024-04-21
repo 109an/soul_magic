@@ -1,4 +1,4 @@
-package soul_magic.soul_magic.spells;
+package soul_magic.soul_magic.spells.spellEntity;
 
 import java.util.ArrayList;
 import java.util.List;
